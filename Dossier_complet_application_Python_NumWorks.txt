@@ -1,0 +1,1231 @@
+DOSSIER TECHNIQUE — APPLICATION PYTHON DE LA CALCULATRICE NUMWORKS
+Version du document : 24 novembre 2026
+Langue : français
+Périmètre : application Python intégrée à Epsilon, calculatrices NumWorks, modèle N0120 et environnement de développement associé.
+
+======================================================================
+0. COMMENT LIRE CE DOSSIER
+======================================================================
+
+Ce document rassemble les informations officielles de NumWorks, les éléments vérifiables dans le code source public d'Epsilon et des informations communautaires. Il cherche à être très complet, mais il distingue volontairement trois niveaux de certitude :
+
+[OFFICIEL] : information publiée dans le manuel, les tutoriels, les caractéristiques techniques ou le dépôt officiel de NumWorks.
+[SOURCE] : information directement visible dans le code source public d'Epsilon.
+[COMMUNAUTÉ] : mesure, historique, retour d'expérience ou documentation indépendante. Cela peut être utile, mais ne constitue pas une garantie du fabricant.
+[À VÉRIFIER] : point qui dépend du modèle matériel, de la version du système ou de la configuration exacte.
+
+Les numéros entre crochets, par exemple [1] ou [8], renvoient à la bibliographie située à la fin. Les liens sont écrits en toutes lettres afin de pouvoir être copiés dans un navigateur.
+
+Attention : les caractéristiques d'une NumWorks ne sont pas toutes identiques d'une génération à l'autre. Une information concernant une N0100, une N0110, une N0120 ou une version modifiée du système ne doit pas être automatiquement appliquée aux autres.
+
+Pour le contexte de ce dossier, la configuration de référence est une NumWorks N0120, avec Epsilon 26.4.0, identifiant/code affiché BD64422B et PCB 04.18, informations communiquées pour cette configuration. Les caractéristiques exactes de la révision matérielle doivent toujours être confirmées sur l'appareil ou dans les informations de diagnostic.
+
+======================================================================
+1. PRÉSENTATION GÉNÉRALE
+======================================================================
+
+1.1 Qu'est-ce que l'application Python ?
+
+[OFFICIEL] L'application Python est l'une des applications intégrées au système Epsilon des calculatrices graphiques NumWorks. Elle permet :
+- d'écrire des programmes directement sur la calculatrice ;
+- d'enregistrer plusieurs scripts Python ;
+- de modifier et relire le code ;
+- d'exécuter un script ;
+- d'utiliser une console interactive pour saisir des commandes ;
+- de créer des fonctions réutilisables ;
+- d'importer les modules fournis avec l'environnement ;
+- d'utiliser certaines fonctions propres à la calculatrice, notamment l'affichage graphique et la lecture du clavier.
+
+Ce n'est pas simplement une calculatrice qui reconnaît quelques commandes Python : c'est un environnement MicroPython embarqué dans le système de la machine. Il a toutefois été adapté à un appareil autonome disposant de ressources beaucoup plus limitées qu'un ordinateur.
+
+1.2 Python, MicroPython et compatibilité
+
+[OFFICIEL] La documentation NumWorks indique que l'environnement repose sur MicroPython 1.17 et annonce une compatibilité avec Python 3.4 [1][2].
+
+Il faut comprendre correctement cette formulation :
+- le langage reprend les bases de Python : variables, conditions, boucles, fonctions, listes, tuples, chaînes, calculs, exceptions et modules disponibles ;
+- MicroPython est une implémentation compacte de Python destinée aux systèmes embarqués ;
+- la compatibilité annoncée avec Python 3.4 ne signifie pas que toutes les bibliothèques de Python 3.4 sont présentes ;
+- la calculatrice ne dispose pas automatiquement de toutes les fonctions de Python installé sur Windows, Linux ou macOS ;
+- une instruction peut être valide sur un ordinateur et échouer sur la calculatrice si elle dépend d'un module absent, d'un accès système ou d'une fonction non prise en charge.
+
+Il faut donc écrire du Python adapté à l'environnement NumWorks, et tester le programme sur le modèle et la version Epsilon visés.
+
+1.3 À quoi sert cette application ?
+
+Exemples d'utilisation :
+- calculs scientifiques et conversions d'unités ;
+- formules de physique et de chimie ;
+- résolution numérique de problèmes ;
+- entraînement aux algorithmes ;
+- exercices de mathématiques ;
+- calculs de géométrie ;
+- statistiques simples ;
+- génération de nombres aléatoires ;
+- tracés et représentations graphiques ;
+- animations simples ;
+- petits jeux au clavier ;
+- menus interactifs ;
+- fiches de révision et outils pédagogiques ;
+- visualisation de fonctions ;
+- calculs répétitifs automatisés.
+
+L'application est particulièrement intéressante pour créer des outils spécialisés qui complètent les applications natives de la calculatrice.
+
+======================================================================
+2. LE MATÉRIEL : POURQUOI PYTHON EST DIFFÉRENT SUR UNE CALCULATRICE
+======================================================================
+
+2.1 Un ordinateur miniature, mais pas un ordinateur généraliste
+
+Une NumWorks est un système embarqué. Son processeur, sa mémoire, son écran, son clavier, sa batterie et son système logiciel sont conçus pour une calculatrice de poche. Le programme Python partage donc les ressources avec Epsilon et les autres applications.
+
+Sur un PC, un programme peut généralement demander davantage de mémoire, accéder à un système de fichiers complet, installer des paquets et utiliser le réseau. Sur une calculatrice, ces possibilités sont fortement encadrées.
+
+Conséquences :
+- la mémoire disponible pour Python est limitée ;
+- le stockage des scripts est limité ;
+- les calculs très lourds peuvent prendre du temps ;
+- les gros tableaux et les images consomment rapidement la mémoire ;
+- les bibliothèques scientifiques courantes d'un PC ne sont pas toutes disponibles ;
+- l'accès au système, aux fichiers et au réseau n'est pas celui d'un ordinateur ;
+- l'interface doit rester adaptée à un petit écran et à un clavier physique.
+
+2.2 Caractéristiques générales publiées par NumWorks
+
+[OFFICIEL] La page technique NumWorks publie les caractéristiques suivantes pour la plateforme présentée sur cette page [3] :
+
+- processeur ARMv7 annoncé à 216 MHz ;
+- mémoire vive statique (SRAM) : 256 Ko ;
+- mémoire Flash ROM : 8 Mo ;
+- écran IPS LCD de 2,8 pouces ;
+- résolution : 320 × 240 pixels ;
+- densité annoncée : 140 pixels par pouce ;
+- affichage : 262 144 couleurs ;
+- batterie lithium-polymère intégrée : 1 450 mAh ;
+- connecteur USB Type-C ;
+- LED RGB ;
+- autonomie annoncée : environ 20 heures selon le scénario d'utilisation décrit par NumWorks.
+
+Ces valeurs décrivent la plateforme correspondant à la page technique. Elles ne doivent pas être considérées comme une fiche universelle de toutes les révisions matérielles.
+
+2.3 Attention aux révisions N0100, N0110 et N0120
+
+[COMMUNAUTÉ] Des informations techniques publiées par TI-Planet distinguent plusieurs générations [9]. Elles rapportent notamment les différences suivantes :
+
+N0100 :
+- microcontrôleur STM32F412 ;
+- cœur Cortex-M4 ;
+- fréquence annoncée de 100 MHz ;
+- 256 Kio de RAM intégrée ;
+- mémoire Flash intégrée de 1 Mio.
+
+N0110 :
+- microcontrôleur STM32F730 ;
+- cœur Cortex-M7 ;
+- fréquence annoncée de 216 MHz ;
+- 256 Kio de RAM intégrée ;
+- mémoire Flash externe de 8 Mio, selon le tableau communautaire.
+
+N0120 / N0120EX :
+- microcontrôleur STM32H725 ;
+- cœur Cortex-M7 ;
+- fréquence annoncée de 550 MHz ;
+- 564 Kio de RAM intégrée ;
+- mémoire Flash intégrée annoncée de 512 Kio et Flash externe de 8 Mio dans le tableau communautaire.
+
+Ces données sont issues d'une source indépendante et doivent être recoupées avec la référence exacte de la carte et les documents de la révision concernée. La page officielle de caractéristiques générales [3] affiche, elle, 216 MHz et 256 Ko. Il existe donc une différence de périmètre ou de génération entre les fiches. Il serait incorrect de prendre une valeur isolée et de l'attribuer sans réserve à toutes les NumWorks.
+
+Pour une N0120 portant PCB 04.18, il est prudent de retenir la référence de carte et la version de firmware comme éléments d'identification, puis de consulter les sources techniques propres à cette révision. Le code BD64422B et Epsilon 26.4.0 sont des informations de configuration, pas une preuve suffisante de chaque composant physique.
+
+2.4 Pourquoi la puissance du processeur ne donne-t-elle pas toute la mémoire Python ?
+
+La mémoire totale de la calculatrice est partagée entre le système, les applications, les structures mathématiques, les piles d'exécution et les données. La mémoire vive annoncée pour le matériel n'est donc pas égale à la mémoire libre d'un script Python.
+
+Le code source de l'application Python définit une taille de tas Python de 65 536 octets, soit 64 Kio [7]. C'est un élément particulièrement important : la limite du tas Python est une limite de l'environnement d'exécution, même si la carte possède davantage de RAM physique.
+
+Il faut distinguer :
+- RAM physique : mémoire vive installée sur la carte ;
+- tas (heap) Python : zone utilisée par l'interpréteur pour les objets Python ;
+- pile (stack) : zone nécessaire à l'exécution des fonctions et appels ;
+- stockage des scripts : mémoire non volatile contenant les fichiers Python ;
+- mémoire des autres applications et du système : ressources utilisées par Epsilon.
+
+Ces zones ne sont pas interchangeables à volonté.
+
+2.5 Écran et interface graphique
+
+L'écran NumWorks documenté par le fabricant mesure 320 × 240 pixels et affiche des couleurs [3]. Cela permet de créer des menus et des graphiques en couleur, mais impose des contraintes :
+- peu de place pour afficher de longues phrases ;
+- nécessité de couper les textes en lignes ;
+- menus compacts ;
+- taille de police à choisir avec soin ;
+- éviter de redessiner inutilement tout l'écran ;
+- éviter les grandes images bitmap ou les tableaux de pixels trop volumineux.
+
+Le module Kandinsky permet de dessiner des pixels, des rectangles et du texte. Il ne faut pas le confondre avec un moteur graphique 3D ou une interface graphique complète.
+
+2.6 Clavier physique
+
+Le programme peut interroger certaines touches au moyen du module ion. Cela rend possibles :
+- les menus pilotés par les flèches ;
+- la validation avec OK/EXE ;
+- les commandes de jeu ;
+- les interfaces sans saisie textuelle permanente.
+
+Le clavier n'est pas un clavier d'ordinateur. Les caractères alphabétiques nécessitent l'utilisation des modes Alpha et Shift. La saisie de code est donc plus lente qu'au PC, d'où l'intérêt du copier-coller, de l'éditeur en ligne et des outils de transfert.
+
+2.7 Batterie et fonctionnement autonome
+
+La calculatrice peut exécuter un script sans être reliée à un ordinateur. La consommation dépend du processeur, de l'écran, du rétroéclairage, des calculs et de la durée d'exécution. Un programme qui boucle en permanence ou rafraîchit l'écran très souvent peut consommer davantage qu'un petit outil qui attend les commandes de l'utilisateur.
+
+Éviter les boucles infinies inutiles et prévoir une manière de quitter le programme.
+
+======================================================================
+3. L'ARCHITECTURE LOGICIELLE : EPSILON ET SES COMPOSANTS
+======================================================================
+
+3.1 Epsilon
+
+[OFFICIEL] Epsilon est le système d'exploitation de la calculatrice NumWorks. Le dépôt officiel le décrit comme un système de calculatrice graphique intégrant plusieurs applications [4][5].
+
+Le code est public sur GitHub. Il permet aux développeurs d'étudier l'organisation du système, de comprendre certaines fonctions et de compiler des versions personnalisées selon les conditions et outils du projet.
+
+3.2 Les cinq grands composants décrits dans la documentation Epsilon
+
+Le dépôt officiel présente cinq briques importantes [5] :
+
+1. Ion — couche d'abstraction matérielle
+   Ion fournit une interface entre le logiciel et le matériel. Il traite notamment les événements clavier, l'écran, le rétroéclairage, la LED et certaines informations matérielles.
+
+2. Kandinsky — moteur de dessin
+   Kandinsky sert à dessiner sur l'écran : pixels, rectangles, textes et couleurs. Le module Python kandinsky expose une partie de ces possibilités.
+
+3. Escher — boîte à outils d'interface graphique
+   Escher fournit les éléments d'interface du système, comme les boutons, menus, onglets et vues. Il sert à construire l'interface des applications natives Epsilon.
+
+4. Poincaré — moteur mathématique
+   Poincaré analyse et évalue des expressions mathématiques, et gère leur représentation. Il est notamment utilisé par les applications mathématiques natives.
+
+5. Apps — applications
+   Les applications utilisent les briques précédentes pour proposer les fonctionnalités de la calculatrice.
+
+Important : un script Python ordinaire n'a pas automatiquement accès à toutes les classes internes C++ d'Escher ou de Poincaré. Le fait que ces composants existent dans Epsilon ne signifie pas qu'ils sont importables comme des modules Python.
+
+3.3 MicroPython dans Epsilon
+
+L'application Python intègre l'interpréteur MicroPython. Epsilon gère son initialisation, son tas mémoire, l'éditeur, la console, les scripts, les menus et les outils d'aide.
+
+Le code source de l'application Code/Python est consultable dans le dépôt officiel, notamment dans le dossier :
+https://github.com/numworks/epsilon/tree/master/epsilon/apps/code
+
+Le fichier app.h contient la constante de taille du tas Python :
+k_pythonHeapSize = 65536
+soit 64 Kio [7].
+
+Cette constante correspond au tas géré pour l'interpréteur dans le code étudié. Elle ne signifie pas que tous les programmes disposent de 64 Kio de données utiles : l'interpréteur, les objets, les bibliothèques et les opérations temporaires consomment eux-mêmes de la mémoire.
+
+======================================================================
+4. L'INTERFACE PYTHON : LES DIFFÉRENTES PARTIES
+======================================================================
+
+4.1 Liste des scripts
+
+À l'ouverture de l'application, l'utilisateur voit une liste de scripts enregistrés. La documentation officielle indique que quatre exemples sont fournis à l'origine :
+- squares.py ;
+- parabola.py ;
+- mandelbrot.py ;
+- polynomial.py.
+
+Le manuel officiel indique que la liste peut contenir jusqu'à huit scripts [1][2]. Cette limite concerne le nombre d'entrées dans la liste, pas le nombre de fonctions ou de fichiers que l'on pourrait avoir sur un ordinateur.
+
+Les scripts d'exemple peuvent être consultés, modifiés ou exécutés. Il est conseillé de les copier ou de les sauvegarder avant de les modifier si l'on souhaite conserver les exemples d'origine.
+
+4.2 Créer un script
+
+Procédure officielle :
+1. Ouvrir l'application Python.
+2. Descendre jusqu'à « Ajouter un script ».
+3. Valider avec OK.
+4. Entrer le nom du script.
+5. Valider.
+6. Sélectionner le script nouvellement créé.
+7. Appuyer sur OK pour ouvrir l'éditeur.
+
+Les scripts utilisent l'extension .py. Le nom doit être simple et explicite. Éviter les espaces, les accents et les caractères spéciaux dans les noms de fichiers ou de modules afin de limiter les problèmes d'importation.
+
+4.3 Éditeur de code
+
+L'éditeur permet d'écrire et de modifier le programme directement sur la calculatrice. Le contenu est conservé lorsque l'on quitte l'éditeur selon le fonctionnement décrit par NumWorks [2].
+
+Fonctions pratiques :
+- insertion de code ;
+- indentation ;
+- menus de raccourcis ;
+- autocomplétion ;
+- accès au catalogue ;
+- accès aux variables et fonctions ;
+- sélection de texte et copier-coller interne.
+
+4.4 Modes Alpha et Shift
+
+Le clavier utilise des fonctions secondaires. La touche Alpha permet de saisir les lettres indiquées sur le clavier. Le mode alphabétique peut être ponctuel ou verrouillé selon le nombre d'appuis. Shift permet notamment de saisir des majuscules.
+
+Les détails de l'interface peuvent varier légèrement selon la version du système et le marquage du clavier. Le tutoriel officiel « Premiers pas avec Python » décrit le comportement de saisie [2].
+
+4.5 Boîte à outils (Toolbox)
+
+La touche Toolbox ouvre des raccourcis pour éviter de taper chaque instruction manuellement.
+
+Le manuel décrit notamment :
+- Boucles et tests : blocs for, while, if et conditions ;
+- Modules : fonctions accessibles dans les modules intégrés ;
+- Catalogue : fonctions Python et descriptions ;
+- Fonctions : modèles def et return.
+
+La Toolbox est particulièrement utile sur une calculatrice où la saisie de texte est moins rapide que sur un ordinateur.
+
+4.6 Autocomplétion
+
+Quand on commence à taper un mot, l'éditeur peut proposer une suggestion grisée.
+- Droite ou OK : accepter la suggestion ;
+- Back ou poursuite de la saisie : la refuser ;
+- Haut/Bas : parcourir les propositions ;
+- VAR : afficher la liste des suggestions correspondant au préfixe.
+
+L'autocomplétion aide à limiter les fautes de frappe, mais ne remplace pas la compréhension du code.
+
+4.7 Copier et coller dans l'éditeur
+
+Le manuel officiel décrit une méthode de sélection :
+1. maintenir Shift et utiliser Gauche/Droite pour sélectionner ;
+2. appuyer sur Shift puis VAR pour copier ;
+3. appuyer sur Shift puis Toolbox pour coller.
+
+Cette méthode concerne le copier-coller dans l'éditeur de la calculatrice. Le transfert de scripts depuis un ordinateur est une opération différente, décrite plus loin.
+
+4.8 Menu de réglages d'un script
+
+Le menu de réglages associé à un script permet notamment de :
+- supprimer le script ;
+- le renommer ;
+- activer ou désactiver son importation automatique dans la console.
+
+L'option d'importation automatique est importante lorsqu'un script définit des fonctions destinées à être appelées depuis la console.
+
+4.9 Console interactive
+
+La console affiche l'invite >>>. Elle permet de taper une instruction Python et d'en observer le résultat immédiatement.
+
+Exemples :
+>>> 2 + 3
+5
+
+>>> 10 / 4
+2.5
+
+>>> print("Bonjour")
+Bonjour
+
+On peut y appeler les fonctions définies dans les scripts importés. La console est utile pour tester une fonction sans relancer toute l'interface du programme.
+
+4.10 Importation automatique des scripts
+
+Par défaut, NumWorks active l'importation automatique des scripts dans la console. Le manuel explique que la console exécute une instruction équivalente à :
+from nom_du_script import *
+
+Les fonctions et variables globales du script deviennent alors accessibles dans la console, si l'importation se déroule correctement.
+
+Il est possible de désactiver cette fonction dans le menu de réglage du script. Cela peut être utile si un script lance automatiquement des instructions, prend beaucoup de mémoire ou provoque une erreur à l'importation.
+
+Attention : une instruction placée au niveau principal du script est exécutée lors de son importation. Pour éviter de lancer un menu ou un jeu simplement en important le fichier, il est préférable de placer le programme principal dans une fonction et de contrôler explicitement son lancement.
+
+======================================================================
+5. LE LANGAGE PYTHON DISPONIBLE
+======================================================================
+
+5.1 Éléments de base
+
+Les éléments fondamentaux du langage que l'on utilise couramment sont notamment :
+- nombres entiers et nombres décimaux ;
+- chaînes de caractères ;
+- booléens True et False ;
+- variables ;
+- opérateurs arithmétiques ;
+- comparaisons ;
+- conditions if / elif / else ;
+- boucles for et while ;
+- fonctions def ;
+- retour de fonction return ;
+- listes ;
+- tuples ;
+- dictionnaires, selon les fonctionnalités de la version ;
+- gestion d'erreurs avec try / except ;
+- importation de modules présents dans l'environnement.
+
+Exemple :
+def moyenne(a, b):
+    return (a + b) / 2
+
+print(moyenne(12, 16))
+
+5.2 Indentation
+
+Python utilise l'indentation pour délimiter les blocs de code. Une fonction, une boucle ou une condition doit contenir des lignes décalées correctement.
+
+Exemple correct :
+def carre(x):
+    if x >= 0:
+        return x * x
+    else:
+        return x * x
+
+Une indentation incorrecte peut provoquer une erreur de syntaxe ou modifier la logique du programme.
+
+5.3 Entrées et sorties
+
+La fonction input() permet de demander une saisie dans les environnements qui la prennent en charge. print() affiche du texte dans la console.
+
+Sur la calculatrice, il faut garder à l'esprit que les interfaces de saisie sont celles de la console, et non une fenêtre de dialogue de bureau.
+
+5.4 Nombres et précision
+
+Les nombres décimaux sont représentés avec une précision finie. Comme sur les ordinateurs, certains calculs en virgule flottante peuvent produire de petites différences d'arrondi.
+
+Exemple :
+0.1 + 0.2
+peut ne pas être représenté exactement comme 0.3 en interne.
+
+Pour comparer des résultats décimaux, utiliser parfois une tolérance :
+abs(a - b) < 1e-9
+
+Adapter cette tolérance à l'échelle du problème.
+
+5.5 Complexes
+
+Le module cmath permet de travailler avec des nombres complexes. Les nombres complexes sont utiles en mathématiques, en électricité et dans certains problèmes de physique.
+
+5.6 Récursivité
+
+La récursivité consiste à appeler une fonction depuis elle-même. Elle doit être utilisée avec prudence sur une calculatrice : une récursion profonde consomme la pile et peut provoquer une erreur ou un arrêt. Pour de nombreux algorithmes, une boucle est plus économique.
+
+======================================================================
+6. MODULES DISPONIBLES ET UTILISATIONS
+======================================================================
+
+La liste officielle documentée pour l'application Python comprend notamment :
+math, cmath, random, matplotlib.pyplot, turtle, kandinsky, ion et time [1][2].
+
+La présence et les fonctions exactes peuvent varier selon la version. Le catalogue Toolbox de la calculatrice constitue une vérification pratique pour le firmware installé.
+
+6.1 math — mathématiques
+
+Le module math fournit les fonctions mathématiques usuelles :
+- constantes pi et e ;
+- racine carrée sqrt ;
+- puissance pow ;
+- exponentielle exp ;
+- logarithmes ;
+- fonctions trigonométriques ;
+- fonctions trigonométriques inverses ;
+- conversions degrés/radians ;
+- arrondis et fonctions numériques.
+
+Exemples :
+from math import sqrt, pi, sin, radians
+
+print(sqrt(81))
+print(pi)
+print(sin(radians(30)))
+
+Pour connaître précisément les fonctions disponibles, consulter le catalogue intégré et le manuel officiel [1].
+
+6.2 cmath — nombres complexes
+
+cmath étend les opérations mathématiques aux nombres complexes. Il est utile pour :
+- nombres complexes ;
+- racines complexes ;
+- fonctions trigonométriques complexes ;
+- exponentielles et logarithmes complexes.
+
+Ne pas supposer que toutes les fonctions de bibliothèques scientifiques PC sont présentes.
+
+6.3 random — nombres aléatoires
+
+Le module random sert à générer des valeurs pseudo-aléatoires.
+
+Fonctions documentées dans le manuel :
+- getrandbits(k) : entier aléatoire sur k bits ;
+- seed(x) : initialisation du générateur ;
+- randrange(start, stop) : valeur dans un intervalle de type range ;
+- randint(a, b) : entier entre a et b inclus ;
+- choice(liste) : élément choisi dans une liste ;
+- random() : nombre décimal dans [0, 1[ ;
+- uniform(a, b) : nombre décimal entre a et b.
+
+Exemple :
+from random import randint
+print(randint(1, 6))
+
+Il s'agit d'un générateur pseudo-aléatoire, pas d'un dispositif cryptographique.
+
+6.4 kandinsky — dessin à l'écran
+
+Kandinsky est l'un des modules les plus intéressants pour créer une interface graphique personnalisée.
+
+Fonctions documentées [1] :
+- color(r, g, b) : créer une couleur RGB ;
+- get_pixel(x, y) : lire la couleur d'un pixel ;
+- set_pixel(x, y, color) : colorer un pixel ;
+- draw_string(text, x, y, [color1], [color2]) : afficher du texte ;
+- fill_rect(x, y, width, height, color) : remplir un rectangle.
+
+Exemple :
+from kandinsky import fill_rect, draw_string, color
+
+bleu = color(0, 80, 200)
+fill_rect(0, 0, 320, 240, bleu)
+draw_string("Bonjour NumWorks", 20, 30, color(255,255,255))
+
+Les coordonnées doivent rester dans la zone de l'écran. Pour la résolution 320 × 240 publiée par NumWorks, les abscisses vont de 0 à 319 et les ordonnées de 0 à 239. Vérifier toutefois la résolution de la machine concernée.
+
+Conseils :
+- dessiner uniquement les zones qui changent ;
+- limiter le nombre de pixels modifiés dans les animations ;
+- éviter de redessiner tout l'écran à chaque tour de boucle ;
+- découper les textes longs ;
+- réutiliser les couleurs déjà calculées ;
+- limiter les grandes listes de pixels.
+
+6.5 ion — clavier et événements
+
+Le module ion permet notamment de connaître l'état d'une touche avec keydown(k).
+
+Exemple de principe :
+import ion
+if ion.keydown(ion.KEY_OK):
+    print("OK est pressé")
+
+Les constantes de touches disponibles doivent être consultées dans Toolbox > Modules > ion sur la calculatrice.
+
+Une lecture de touche dans une boucle rapide peut détecter plusieurs fois un appui maintenu. Pour ne déclencher une action qu'une seule fois par appui, mémoriser l'état précédent.
+
+Exemple :
+import ion
+precedent = False
+while True:
+    actuel = ion.keydown(ion.KEY_OK)
+    if actuel and not precedent:
+        print("Appui unique")
+    precedent = actuel
+
+Prévoir une sortie de boucle et une commande d'interruption.
+
+6.6 time — temps et pauses
+
+Le module time documente notamment :
+- monotonic() : horloge monotone, utile pour mesurer une durée ;
+- sleep(t) : suspend l'exécution pendant t secondes.
+
+Exemple :
+import time
+debut = time.monotonic()
+time.sleep(1)
+print(time.monotonic() - debut)
+
+L'horloge monotone sert à mesurer un intervalle ; elle ne doit pas être considérée comme une date civile complète.
+
+6.7 turtle — dessin avec une tortue
+
+Le module turtle permet de tracer des formes en déplaçant une tortue virtuelle. Il est utile pour apprendre la programmation graphique et construire des figures géométriques.
+
+Exemples d'utilisation :
+- carré ;
+- polygone ;
+- spirale ;
+- rosace ;
+- dessins géométriques ;
+- parcours et motifs.
+
+Les possibilités de turtle sont celles de l'implémentation intégrée, pas nécessairement toutes celles de Python sur ordinateur.
+
+6.8 matplotlib.pyplot — graphiques
+
+NumWorks documente le module matplotlib.pyplot. Il sert à produire des graphiques et des représentations de données.
+
+Utilisations :
+- courbes ;
+- fonctions ;
+- nuages de points ;
+- visualisation de mesures ;
+- comparaison de séries.
+
+La bibliothèque est adaptée à l'environnement NumWorks : il ne faut pas supposer que toutes les fonctions, styles, options ou extensions de Matplotlib sur PC sont disponibles.
+
+6.9 Modules et bibliothèques non garantis
+
+Sur un PC, on utilise souvent numpy, scipy, pandas, requests, pygame, PIL/Pillow, tkinter, os, sys, socket, etc. Leur présence sur une NumWorks ne doit jamais être supposée.
+
+Le fait qu'un tutoriel PC utilise une bibliothèque ne prouve pas qu'elle est installée dans Epsilon. Toujours tester :
+import nom_du_module
+
+Si l'importation échoue, le module n'est pas disponible dans l'environnement courant ou son nom n'est pas reconnu.
+
+Des projets communautaires peuvent ajouter ou modifier des fonctionnalités, mais ils impliquent parfois un autre firmware ou une installation différente.
+
+======================================================================
+7. LIMITES IMPORTANTES DE L'APPLICATION PYTHON
+======================================================================
+
+7.1 Limite de mémoire d'exécution
+
+[SOURCE] Le code de l'application Python dans le dépôt Epsilon définit un tas de 65 536 octets, soit 64 Kio [7].
+
+Cela ne signifie pas que le programme peut utiliser 64 Kio uniquement pour ses variables. Le tas contient aussi les objets internes, chaînes, listes, tuples, dictionnaires, données de bibliothèques et allocations temporaires.
+
+Conséquences pratiques :
+- une liste de très grande taille peut épuiser la mémoire ;
+- une image représentée par des milliers de tuples RGB peut être trop lourde ;
+- multiplier les chaînes de caractères et les copies augmente la consommation ;
+- les récursions et calculs temporaires peuvent provoquer des erreurs ;
+- un programme peut fonctionner avec peu de données et échouer lorsque les données augmentent.
+
+7.2 Mémoire de stockage des scripts
+
+[COMMUNAUTÉ] TI-Planet a documenté l'évolution historique de l'espace consacré aux scripts Python : capacité initiale proche de 2 946 octets, puis environ 16 382 octets avec une mise à jour, puis 32 766 octets à partir de la version 13.1.0 selon son historique [10].
+
+Ces chiffres sont historiques et dépendent du firmware et de la manière dont l'espace est comptabilisé. Ils ne doivent pas être présentés comme une mesure officielle garantie pour chaque version actuelle. Les scripts préchargés occupent également une partie de l'espace disponible.
+
+Ne pas confondre :
+- taille du fichier .py enregistré ;
+- mémoire du tas pendant l'exécution ;
+- mémoire totale de la calculatrice ;
+- mémoire disponible après les scripts déjà présents.
+
+7.3 Nombre de scripts
+
+Le manuel officiel annonce un maximum de huit scripts dans la liste [1]. Ce plafond n'est pas la même chose qu'une limite de huit fonctions : un script peut contenir de nombreuses fonctions, tant que les limites de stockage et d'exécution sont respectées.
+
+7.4 Pas d'environnement PC complet
+
+La calculatrice n'est pas un ordinateur de bureau :
+- pas d'installation habituelle de paquets avec pip ;
+- pas d'accès général à un terminal système ;
+- pas de gestion complète des processus ;
+- pas d'accès réseau Python général garanti ;
+- pas de fenêtre graphique de bureau ;
+- pas de système de fichiers Python identique à Windows ;
+- pas de périphériques USB arbitraires accessibles comme sur un PC ;
+- pas de prise en charge automatique des extensions compilées pour PC.
+
+7.5 Fichiers et persistance
+
+Un script enregistré dans l'application reste présent après fermeture de l'application et redémarrage normal, sous réserve de ne pas le supprimer ou réinitialiser la calculatrice.
+
+En revanche, il ne faut pas supposer que toutes les données créées en mémoire pendant l'exécution sont automatiquement enregistrées. Une variable créée dans la console n'est pas équivalente à un fichier sauvegardé. Pour conserver des données, prévoir une méthode compatible avec l'environnement et les mécanismes proposés par Epsilon.
+
+7.6 Internet et réseau
+
+Le fait que la calculatrice puisse être reliée à un ordinateur par USB ne signifie pas que le script Python dispose d'un accès Internet. Le manuel officiel des modules ne présente pas un module réseau général comme une fonction standard de l'application Python [1].
+
+Un script classique ne doit donc pas dépendre d'une requête HTTP, d'une API distante ou d'un téléchargement en direct sans environnement spécialisé qui le permette explicitement.
+
+7.7 Performances
+
+Les performances varient avec :
+- la génération de la calculatrice ;
+- la version Epsilon ;
+- le type de calcul ;
+- le nombre d'objets créés ;
+- la taille des listes ;
+- le dessin à l'écran ;
+- le nombre d'itérations ;
+- les bibliothèques appelées.
+
+Un processeur plus rapide ne supprime pas les limites du tas Python ou du stockage.
+
+7.8 Graphismes et animations
+
+Kandinsky est adapté au dessin 2D simple. Il faut éviter les animations qui redessinent chaque pixel à très haute fréquence. Une interface efficace doit :
+- actualiser uniquement les éléments modifiés ;
+- utiliser des rectangles pour les zones pleines ;
+- limiter les calculs dans la boucle d'affichage ;
+- prévoir un délai ou une cadence de rafraîchissement ;
+- permettre de quitter l'animation.
+
+7.9 Messages d'erreur courants
+
+SyntaxError :
+- parenthèse ou guillemet manquant ;
+- deux-points oublié après if, for, while ou def ;
+- indentation incorrecte ;
+- syntaxe non comprise par la version utilisée.
+
+NameError :
+- variable ou fonction inconnue ;
+- faute dans le nom ;
+- fonction définie dans un script qui n'a pas été importé.
+
+ImportError / ModuleNotFoundError :
+- module absent ;
+- nom de module incorrect ;
+- bibliothèque disponible sur PC mais pas dans Epsilon.
+
+TypeError :
+- opération incompatible entre types ;
+- mauvais nombre d'arguments ;
+- argument d'un type incorrect.
+
+ValueError :
+- valeur correcte en type mais invalide pour l'opération.
+
+MemoryError :
+- mémoire d'exécution insuffisante ;
+- trop de données ou d'objets ;
+- allocations répétées ;
+- programme trop gourmand.
+
+OverflowError :
+- valeur trop grande pour une opération numérique prise en charge.
+
+KeyboardInterrupt ou interruption :
+- exécution arrêtée par l'utilisateur ou par le mécanisme d'interruption.
+
+7.10 Les tailles maximales ne sont pas toutes publiées de façon simple
+
+Il n'existe pas une seule limite universelle qui permettrait de dire qu'un script de X lignes fonctionnera toujours. Le nombre de lignes n'est pas une mesure fiable de la mémoire : une seule ligne peut créer une liste immense, tandis qu'un fichier de plusieurs centaines de lignes peut rester léger.
+
+La bonne méthode consiste à tester le programme sur l'appareil cible, à mesurer les consommations lorsque les outils disponibles le permettent, et à garder une marge de sécurité.
+
+======================================================================
+8. ÉCRIRE UN BON PROGRAMME POUR NUMWORKS
+======================================================================
+
+8.1 Penser « calculatrice » dès la conception
+
+Un bon programme NumWorks doit :
+- être utilisable avec les flèches et les touches physiques ;
+- afficher des textes courts ;
+- proposer des menus lisibles ;
+- éviter les saisies longues ;
+- ne pas demander de ressources inutiles ;
+- être rapide à lancer ;
+- fournir une sortie claire ;
+- prévoir un moyen de retour ou de fermeture ;
+- ne pas bloquer la calculatrice dans une boucle sans fin.
+
+8.2 Architecture conseillée
+
+Pour un programme avec menus :
+1. définir les constantes ;
+2. définir les fonctions de calcul ;
+3. définir les fonctions d'affichage ;
+4. définir la lecture du clavier ;
+5. définir les menus ;
+6. définir une fonction main() ;
+7. lancer main() uniquement lorsque cela est voulu.
+
+Exemple simple :
+def addition(a, b):
+    return a + b
+
+def main():
+    print("Outil de calcul")
+    print(addition(12, 8))
+
+main()
+
+Pour un script destiné à être importé dans la console, il est préférable de séparer les fonctions et le lancement automatique.
+
+8.3 Optimiser la mémoire
+
+Bonnes pratiques :
+- éviter les copies inutiles de grandes listes ;
+- supprimer les références devenues inutiles ;
+- préférer les calculs successifs aux tableaux géants ;
+- limiter les chaînes répétées ;
+- éviter de stocker une image complète si elle peut être dessinée avec quelques rectangles ;
+- réutiliser les variables temporaires ;
+- éviter les objets créés à chaque tour d'une boucle ;
+- ne pas importer de modules inutiles ;
+- fractionner les calculs très volumineux.
+
+Le module gc peut exister dans certains environnements MicroPython, mais sa disponibilité et ses fonctions doivent être vérifiées sur le firmware. Ne pas baser un programme essentiel sur un module non listé dans la documentation officielle sans le tester.
+
+8.4 Optimiser l'affichage
+
+- Ne pas effacer tout l'écran à chaque rafraîchissement si seules quelques lignes changent.
+- Utiliser fill_rect pour effacer une zone.
+- Regrouper les mises à jour.
+- Limiter les effets visuels.
+- Prévoir une zone fixe pour le titre et une autre pour le contenu.
+- Retourner à la ligne avant que le texte dépasse l'écran.
+
+8.5 Optimiser la navigation
+
+- Flèche haut/bas : choix de ligne.
+- OK/EXE : valider.
+- Retour : revenir au menu précédent lorsque le comportement système le permet.
+- Éviter d'utiliser une touche réservée par le système comme commande interne sans vérifier son comportement.
+- Éviter les actions répétées lorsque la touche reste enfoncée.
+
+8.6 Tester progressivement
+
+Méthode conseillée :
+1. écrire une petite fonction ;
+2. l'exécuter ;
+3. vérifier les résultats ;
+4. ajouter une fonction ;
+5. tester à nouveau ;
+6. ajouter l'affichage ;
+7. ajouter le clavier ;
+8. tester les limites de mémoire ;
+9. tester les cas extrêmes ;
+10. faire un essai après redémarrage.
+
+Ne pas attendre d'avoir écrit tout le programme pour le premier test.
+
+======================================================================
+9. TRANSFÉRER DES SCRIPTS ENTRE UN ORDINATEUR ET LA CALCULATRICE
+======================================================================
+
+9.1 Créer le fichier sur ordinateur
+
+Un script Python est un fichier texte dont l'extension habituelle est .py.
+Exemple :
+outil_physique.py
+
+Un éditeur de texte ou un éditeur de code peut servir à le créer. Enregistrer le fichier en texte simple, avec un encodage compatible, généralement UTF-8. Éviter les caractères exotiques si l'environnement ne les gère pas correctement.
+
+9.2 Compte NumWorks et espace « Mes scripts »
+
+[OFFICIEL] NumWorks propose une interface en ligne permettant de créer, modifier, enregistrer et partager des scripts depuis un compte NumWorks [2][6].
+
+Cette solution est pratique pour préparer le code au clavier d'un PC, puis le retrouver dans l'écosystème NumWorks.
+
+9.3 Connexion USB
+
+La connexion USB sert notamment à communiquer avec les outils NumWorks et à transférer des éléments compatibles. Le fait que le PC détecte un périphérique USB ne signifie pas nécessairement qu'il apparaît comme une clé USB classique dans l'Explorateur Windows.
+
+Utiliser les outils officiels de transfert et les instructions actuelles du site NumWorks. Le navigateur, le système d'exploitation, les pilotes, le câble et le firmware peuvent influencer le résultat.
+
+9.4 Vérifier le transfert
+
+Après le transfert :
+1. débrancher proprement selon les instructions affichées ;
+2. ouvrir l'application Python ;
+3. vérifier que le script figure dans la liste ;
+4. ouvrir le script ;
+5. contrôler le début et la fin du code ;
+6. exécuter un test simple ;
+7. vérifier les accents, symboles et retours à la ligne.
+
+9.5 Copier-coller
+
+Le copier-coller peut être utile pour de petits scripts ou des extraits, mais il est moins pratique pour de gros programmes. Vérifier les indentations après collage.
+
+9.6 Formats à ne pas confondre
+
+.py : fichier de script Python.
+.nwa : format d'application externe NumWorks, ce n'est pas un script Python.
+.nws : format utilisé par certains outils ou sauvegardes de l'écosystème, ce n'est pas l'extension normale d'un script Python à coller dans l'éditeur.
+.uf2 / fichiers de firmware : éléments de mise à jour ou de flashage selon le matériel et la méthode ; ce ne sont pas des scripts Python.
+
+Le format exact dépend de l'outil et de l'opération. Ne jamais renommer un fichier au hasard en .py, .nwa ou .nws en espérant le convertir : changer l'extension ne convertit pas son contenu.
+
+======================================================================
+10. ÉMULATEUR ET TEST SUR ORDINATEUR
+======================================================================
+
+10.1 Simulateur officiel
+
+Le projet Epsilon indique qu'il peut être compilé comme application autonome sur ordinateur et qu'un simulateur en ligne est disponible [4]. Cela permet de tester l'interface générale de la calculatrice et certaines fonctions du système.
+
+10.2 Différences entre simulateur et appareil physique
+
+Un simulateur peut être très utile, mais il ne reproduit pas nécessairement :
+- les performances exactes du processeur réel ;
+- le comportement électrique du clavier ;
+- toutes les contraintes matérielles ;
+- la mémoire réellement disponible sur la carte ;
+- le comportement d'une version différente du firmware ;
+- les problèmes de transfert USB.
+
+Un script doit être testé sur la vraie calculatrice avant d'être considéré comme validé.
+
+10.3 Tester sur PC avec Python classique
+
+Il est possible d'exécuter une partie du code avec Python installé sur un ordinateur. Toutefois :
+- kandinsky n'est pas un module standard de Python PC ;
+- ion n'est pas le clavier de la NumWorks ;
+- les modules NumWorks peuvent manquer ;
+- matplotlib sur PC peut se comporter différemment ;
+- les limites mémoire ne seront pas les mêmes.
+
+Pour rendre le code testable, séparer le calcul pur de l'affichage et des entrées clavier. Les fonctions mathématiques simples pourront alors être testées sur PC, tandis que l'interface sera testée sur calculatrice.
+
+======================================================================
+11. APPLICATIONS EXTERNES ET FIRMWARES ALTERNATIFS : À NE PAS CONFONDRE AVEC PYTHON
+======================================================================
+
+11.1 Applications externes .nwa
+
+[OFFICIEL] Le dépôt Epsilon documente la création d'applications externes et le format .nwa [8]. Une application externe peut être développée dans un environnement adapté, puis installée sur une calculatrice compatible au moyen du mécanisme prévu.
+
+Une application externe n'est pas un fichier Python. Elle peut être écrite en C/C++ selon les exemples et outils du projet.
+
+Le dépôt officiel décrit :
+- les prérequis de compilation ;
+- l'utilisation d'un compilateur C ;
+- l'outil nwlink ;
+- la construction d'une application ;
+- l'installation sur une calculatrice connectée ;
+- la distribution du fichier .nwa.
+
+11.2 Firmware personnalisé
+
+Le code source Epsilon est public. Des développeurs peuvent construire une version personnalisée du système, dans les limites du matériel, du projet et des conditions de licence.
+
+Un firmware alternatif peut ajouter, modifier ou retirer des fonctions. Il peut aussi changer la compatibilité avec les scripts ou les applications. Il faut toujours lire la documentation du projet utilisé et vérifier la compatibilité avec le modèle précis.
+
+11.3 Omega, Upsilon et projets communautaires
+
+Des projets communautaires ont proposé des variantes ou forks d'Epsilon. Ils peuvent apporter des fonctionnalités supplémentaires, mais leur état, compatibilité, maintenance et méthode d'installation varient dans le temps.
+
+Un firmware alternatif n'est pas automatiquement officiel, garanti par NumWorks ou compatible avec toutes les versions de matériel. Avant toute installation :
+- sauvegarder les données importantes ;
+- lire la documentation actuelle du projet ;
+- vérifier le modèle matériel exact ;
+- vérifier les procédures de récupération ;
+- comprendre les risques de perte de données ou de blocage ;
+- ne pas installer un fichier provenant d'une source inconnue.
+
+11.4 Déverrouillage et sécurité
+
+Les méthodes de déverrouillage, de modification du firmware ou d'installation d'applications peuvent dépendre de la version logicielle et matérielle. Il ne faut pas appliquer une procédure trouvée pour une ancienne génération à une N0120 sans preuve de compatibilité.
+
+Pour une utilisation scolaire, vérifier également les règles applicables au mode examen et aux contrôles. Un script personnel ou une modification du système peut être interdit ou rendre la calculatrice non conforme aux exigences d'une épreuve.
+
+======================================================================
+12. MODE EXAMEN ET UTILISATION SCOLAIRE
+======================================================================
+
+Les règles du mode examen et les exigences d'un établissement ou d'un examen officiel ne doivent pas être déduites du seul fait qu'un script est présent dans l'application Python.
+
+Avant une épreuve :
+- consulter les consignes officielles de l'examen ;
+- vérifier le comportement du mode examen sur le modèle exact ;
+- ne pas supposer qu'un script personnel est autorisé ;
+- ne pas modifier le firmware pour contourner les règles ;
+- vérifier si les données et programmes sont effacés ou désactivés par la procédure applicable.
+
+Les règles peuvent changer selon l'examen, le pays, l'année et l'organisateur.
+
+======================================================================
+13. EXEMPLES DE PROGRAMMES ADAPTÉS
+======================================================================
+
+13.1 Calculatrice de formule
+
+Un programme peut demander des valeurs, appliquer une formule, afficher les étapes et donner le résultat. Il est préférable de séparer :
+- saisie ;
+- vérification des unités ;
+- calcul ;
+- affichage du résultat.
+
+13.2 Convertisseur d'unités
+
+Conversions possibles :
+- m, cm, mm, km ;
+- m², cm² ;
+- m³, cm³ ;
+- L, mL, cL ;
+- J, Wh, kWh ;
+- W, kW ;
+- kg, g.
+
+Toujours vérifier les facteurs de conversion et les unités.
+
+13.3 Outil de révision STI2D
+
+Un script peut réunir :
+- formules ;
+- définitions ;
+- schémas simples ;
+- questions d'entraînement ;
+- corrections ;
+- calculs guidés ;
+- menus par chapitre.
+
+Le programme doit être compact et afficher les informations en plusieurs écrans pour respecter la résolution.
+
+13.4 Graphiques
+
+Avec matplotlib.pyplot, on peut représenter une fonction ou des mesures. Pour des graphiques très personnalisés, Kandinsky permet de dessiner des axes et des points, mais il faut gérer soi-même les coordonnées.
+
+13.5 Jeux
+
+Des jeux simples sont possibles :
+- devinettes ;
+- quiz ;
+- jeux de réaction ;
+- labyrinthe 2D ;
+- casse-briques simplifié ;
+- jeux de calcul ;
+- mini-jeux au clavier.
+
+Les jeux 3D complexes, les gros moteurs physiques et les graphismes lourds ne sont pas adaptés aux limites de l'environnement Python standard.
+
+======================================================================
+14. DIAGNOSTIC ET DÉPANNAGE
+======================================================================
+
+Problème : le script n'apparaît pas.
+À vérifier :
+- le transfert a-t-il réellement abouti ?
+- le fichier est-il bien un script .py ?
+- est-il compatible avec l'application Python ?
+- le script a-t-il été envoyé dans la bonne calculatrice ?
+- la liste est-elle déjà au maximum de huit scripts ?
+
+Problème : erreur dès l'ouverture de la console.
+À vérifier :
+- importation automatique activée ;
+- erreur dans le script importé ;
+- instruction qui s'exécute immédiatement ;
+- module manquant ;
+- nom de script incorrect.
+
+Problème : MemoryError.
+À vérifier :
+- listes trop grandes ;
+- chaînes trop longues ;
+- objets dupliqués ;
+- tableaux de pixels ;
+- récursion ;
+- allocations répétées ;
+- modules et variables conservés inutilement.
+
+Problème : le programme semble figé.
+À vérifier :
+- boucle while sans condition de sortie ;
+- attente clavier mal conçue ;
+- calcul trop long ;
+- rafraîchissement graphique permanent.
+Pour interrompre un script, le manuel officiel indique d'appuyer sur la touche Back ; en cas de boucle infinie, maintenir la touche et répéter si nécessaire [1].
+
+Problème : le programme fonctionne sur PC mais pas sur NumWorks.
+Causes possibles :
+- module absent ;
+- fonction Python non prise en charge ;
+- syntaxe trop récente ;
+- différence de comportement MicroPython ;
+- manque de mémoire ;
+- différence d'affichage ;
+- différence de clavier ou de fichiers.
+
+Problème : caractères étranges.
+À vérifier :
+- encodage du fichier ;
+- caractères non pris en charge ;
+- guillemets typographiques ;
+- tirets spéciaux ;
+- copier-coller ;
+- présence de caractères invisibles.
+
+======================================================================
+15. BONNES PRATIQUES DE SÉCURITÉ ET DE CONSERVATION
+======================================================================
+
+- Conserver une copie du code original sur ordinateur.
+- Faire des versions successives avant les modifications importantes.
+- Ne pas installer de firmware trouvé au hasard.
+- Ne pas exécuter un script dont le contenu est inconnu.
+- Ne pas supposer qu'un script téléchargé est sans risque.
+- Vérifier les boucles, les suppressions et les commandes avant exécution.
+- Garder une copie des scripts importants hors de la calculatrice.
+- Tester les programmes sur une calculatrice de test si le projet est critique.
+- Vérifier les règles scolaires et d'examen.
+
+Un script Python ordinaire n'a pas les mêmes privilèges qu'une application système, mais il peut tout de même bloquer l'exécution, saturer la mémoire ou produire des résultats faux.
+
+======================================================================
+16. CE QUI EST OFFICIEL, CE QUI EST COMMUNAUTAIRE, CE QUI RESTE À CONFIRMER
+======================================================================
+
+OFFICIEL ET DOCUMENTÉ :
+- application Python intégrée à Epsilon ;
+- MicroPython 1.17 et compatibilité annoncée Python 3.4 ;
+- éditeur, console interactive, scripts ;
+- quatre scripts d'exemple ;
+- maximum de huit scripts dans la liste ;
+- autocomplétion ;
+- Toolbox et menu VAR ;
+- importation automatique configurable ;
+- modules math, cmath, random, matplotlib.pyplot, turtle, kandinsky, ion et time ;
+- fonctions principales de Kandinsky, Ion et Time décrites dans le manuel ;
+- caractéristiques générales publiées sur la page technique NumWorks ;
+- architecture générale d'Epsilon ;
+- existence d'un dépôt de code source et de la documentation des applications externes.
+
+SOURCE DU CODE :
+- taille de tas Python définie à 65 536 octets dans le fichier app.h consulté ;
+- architecture interne de l'application Python visible dans le dépôt Epsilon.
+
+COMMUNAUTAIRE :
+- historique détaillé des capacités de stockage Python ;
+- comparaisons des générations N0100, N0110 et N0120 ;
+- mesures de performance entre révisions ;
+- retours d'expérience sur les limites et les comportements ;
+- firmwares alternatifs et outils non officiels.
+
+À CONFIRMER SUR L'APPAREIL :
+- mémoire réellement disponible au moment de l'exécution ;
+- espace de stockage restant pour les scripts ;
+- liste exacte des modules du firmware installé ;
+- comportement de chaque touche ;
+- compatibilité des outils de transfert ;
+- spécificités exactes du PCB 04.18 ;
+- éventuelles différences apportées par Epsilon 26.4.0.
+
+======================================================================
+17. RÉFÉRENCES ET SOURCES NUMÉROTÉES
+======================================================================
+
+Les références ci-dessous sont numérotées pour faciliter les renvois dans le texte. Les pages en ligne peuvent évoluer ; consulter leur version actuelle avant une opération importante.
+
+[1] NUMWORKS — Manuel officiel, application Python.
+Description de MicroPython, scripts, console, modules, touches et fonctions.
+https://www.numworks.com/fr/graphique/manuel/python/
+Version anglaise également disponible :
+https://www.numworks.com/manual/python/
+
+[2] NUMWORKS — Premiers pas avec Python.
+Création d'un script, éditeur, indentation, fonctions, console, modules, compte NumWorks.
+https://www.numworks.com/fr/graphique/applications/python/premiers-pas/
+
+[3] NUMWORKS — Technical specifications.
+Caractéristiques générales publiées : processeur, mémoire, écran, batterie et connectique.
+https://www.numworks.com/engineering/specs/
+
+[4] NUMWORKS — Dépôt officiel GitHub Epsilon.
+Code source du système d'exploitation de la calculatrice.
+https://github.com/numworks/epsilon
+
+[5] NUMWORKS — Documentation d'architecture Epsilon.
+Présentation des briques Ion, Kandinsky, Escher, Poincaré et Apps.
+https://github.com/numworks/epsilon/blob/master/epsilon/docs/README.md
+
+[6] NUMWORKS — Tutoriels Python.
+Édition et exécution de scripts, importation de modules, autocomplétion et autres tutoriels.
+https://www.numworks.com/fr/graphique/tutoriels/python/
+
+[7] NUMWORKS — Code source de l'application Python, fichier app.h.
+La constante k_pythonHeapSize est définie à 65536 octets (64 Kio).
+https://github.com/numworks/epsilon/blob/master/epsilon/apps/code/app.h
+
+[8] NUMWORKS — Documentation des applications externes.
+Construction et installation d'applications externes au format .nwa.
+https://github.com/numworks/epsilon/blob/master/epsilon/external_apps/README.md
+
+[9] TI-PLANET — Article technique sur la NumWorks N0120.
+Comparaison communautaire des générations N0100, N0110 et N0120, composants et performances.
+https://tiplanet.org/forum/viewtopic.php?p=269215
+
+[10] TI-PLANET — Historique de l'espace de stockage Python et du tas mémoire.
+Informations communautaires sur les évolutions de capacité de stockage et le tas Python.
+https://tiplanet.org/forum/viewtopic.php?lang=en&p=268368
+
+[11] NUMWORKS — Manuel PDF officiel.
+Manuel complet, incluant les chapitres consacrés à Python et aux modules.
+https://www.numworks.com/fr/ressources/manuel/book.pdf
+
+[12] NUMWORKS — Application Python, page de présentation.
+Présentation de l'éditeur, des scripts enregistrés et de la console Python.
+https://www.numworks.com/fr/graphique/applications/python/
+
+[13] NUMWORKS — Documentation des caractéristiques et ressources d'ingénierie.
+Point d'entrée pour les informations techniques publiées par le fabricant.
+https://www.numworks.com/resources/engineering/
+
+[14] NUMWORKS — Dépôt Epsilon, répertoire de l'application Python.
+Contrôleurs, console, éditeur, stockage des scripts et outils Python.
+https://github.com/numworks/epsilon/tree/master/epsilon/apps/code
+
+[15] NUMWORKS — Simulateur et ressources du projet Epsilon.
+Le dépôt décrit la compilation d'Epsilon en application autonome et le simulateur en ligne.
+https://github.com/numworks/epsilon
+
+======================================================================
+18. GLOSSAIRE
+======================================================================
+
+Application : programme intégré à Epsilon, accessible depuis le menu principal.
+
+Script : fichier de code Python, généralement avec l'extension .py.
+
+MicroPython : implémentation compacte du langage Python pour systèmes embarqués.
+
+Epsilon : système d'exploitation des calculatrices NumWorks.
+
+Firmware : logiciel système installé dans la calculatrice.
+
+Interpréteur : programme qui lit et exécute les instructions Python.
+
+Console : interface interactive où l'on saisit des commandes après >>>.
+
+Module : bibliothèque de fonctions importable dans un script.
+
+Importation : opération qui rend les fonctions d'un module ou d'un script accessibles.
+
+Heap / tas : zone mémoire utilisée pour les objets et allocations dynamiques de Python.
+
+Stack / pile : mémoire utilisée pour les appels de fonctions et l'exécution.
+
+RAM : mémoire vive, utilisée pendant le fonctionnement.
+
+Flash : mémoire non volatile, qui conserve les données sans alimentation.
+
+Kandinsky : module de dessin 2D exposé à Python.
+
+Ion : interface logicielle donnant accès à certaines fonctions matérielles, notamment le clavier.
+
+Escher : boîte à outils d'interface graphique d'Epsilon.
+
+Poincaré : moteur de traitement mathématique d'Epsilon.
+
+.nwa : format d'application externe NumWorks, distinct d'un script Python.
+
+.py : extension habituelle d'un fichier de script Python.
+
+N0100 / N0110 / N0120 : générations matérielles de calculatrices NumWorks.
+
+PCB : circuit imprimé de la calculatrice ; sa révision aide à identifier le matériel.
+
+======================================================================
+19. CONCLUSION
+======================================================================
+
+L'application Python de NumWorks est un véritable environnement de programmation embarqué, particulièrement utile pour apprendre Python et créer des outils scientifiques ou pédagogiques personnalisés.
+
+Ses points forts sont :
+- programmation directement sur la calculatrice ;
+- éditeur intégré ;
+- console interactive ;
+- modules mathématiques et graphiques ;
+- accès au clavier ;
+- dessin en couleur ;
+- transfert et gestion de scripts dans l'écosystème NumWorks ;
+- code source Epsilon publiquement consultable.
+
+Ses limites principales sont :
+- mémoire d'exécution restreinte ;
+- stockage des scripts limité ;
+- nombre de scripts plafonné dans la liste ;
+- bibliothèque Python plus réduite que sur PC ;
+- absence d'un environnement de bureau complet ;
+- performances et possibilités dépendantes du matériel et du firmware.
+
+Pour développer sérieusement, la meilleure méthode est d'écrire et organiser le code sur ordinateur, de garder les programmes compacts, de tester les fonctions séparément, puis de vérifier le résultat sur la calculatrice réelle. Pour une N0120 sous Epsilon 26.4.0, il faut toujours privilégier les essais sur cette configuration exacte plutôt que de supposer que les résultats obtenus sur une ancienne NumWorks ou un simulateur seront identiques.
+
+FIN DU DOSSIER

@@ -1,0 +1,1736 @@
+ARCHIVE DE COURS — LES POLYNÔMES DU SECOND DEGRÉ
+================================================
+
+Document pédagogique complet
+Niveau principal : lycée — Première technologique, notamment STI2D
+Référence scolaire : programme français applicable à la rentrée 2026-2027
+Version : 24 novembre 2026
+
+OBJECTIF DU DOCUMENT
+--------------------
+Cette archive rassemble les notions, méthodes, explications, exemples corrigés,
+rappels et approfondissements utiles pour comprendre les fonctions polynômes
+du second degré. Elle est rédigée pour être étudiée progressivement et servir
+de référence pendant les exercices.
+
+IMPORTANT — PROGRAMME ET NIVEAUX
+--------------------------------
+Le programme officiel de première de la voie technologique applicable à la
+rentrée 2026-2027 demande notamment de travailler :
+- les fonctions polynômes de degré 2 ;
+- l'allure de leur courbe et la parabole ;
+- l'axe de symétrie et le sommet ;
+- le tableau de variations ;
+- les racines et le signe d'un polynôme donné sous forme factorisée ;
+- l'association de certaines expressions à leur parabole ;
+- la détermination d'éléments caractéristiques à partir d'une expression ;
+- la vérification d'une racine conjecturée ;
+- la factorisation dans des cas simples lorsqu'une racine est connue ;
+- l'utilisation de la forme factorisée pour trouver les racines et étudier le signe.
+
+Le texte officiel précise que le calcul des racines à l'aide du discriminant
+ne figure pas au programme de première technologique 2026-2027. La recherche
+systématique des racines n'est pas attendue : on privilégie les racines
+évidentes, l'interprétation graphique et, si nécessaire, un solveur.
+
+Le discriminant, les formules générales de résolution, les cas sans racine
+réelle et certaines relations entre racines sont donc présentés plus loin
+comme APPROFONDISSEMENTS. Ils sont utiles pour la culture mathématique, la
+poursuite d'études et la compréhension générale du sujet, mais ne doivent pas
+être confondus avec les attendus stricts du programme technologique cité.
+
+Le programme peut évoluer. Le professeur et les consignes de l'établissement
+restent prioritaires pour une évaluation donnée.
+
+SOMMAIRE
+--------
+1. Comprendre les expressions algébriques
+2. Définition d'un polynôme du second degré
+3. Vocabulaire et coefficients a, b, c
+4. Les trois formes d'un polynôme
+5. Développer, réduire et factoriser
+6. Fonction associée et représentation graphique
+7. La parabole : sens, orientation et allure
+8. Sommet et axe de symétrie
+9. Variations et extremum
+10. Racines et intersections avec l'axe des abscisses
+11. Forme factorisée et racines
+12. Signe d'un polynôme du second degré
+13. Résoudre une équation et une inéquation
+14. Méthodes de résolution selon les informations disponibles
+15. Approfondissement : discriminant
+16. Approfondissement : formules des racines
+17. Approfondissement : somme et produit des racines
+18. Lire et exploiter un graphique
+19. Problèmes concrets et modélisation
+20. Méthode de rédaction attendue
+21. Erreurs fréquentes
+22. Fiche de révision et formules essentielles
+23. Exercices progressifs corrigés
+24. Exercices supplémentaires sans correction immédiate
+25. Glossaire
+26. Programme officiel : attendus et limites
+27. Sources officielles et ressources
+
+======================================================================
+1. COMPRENDRE LES EXPRESSIONS ALGÉBRIQUES
+======================================================================
+
+Une expression algébrique est une expression mathématique qui contient des
+nombres, des lettres et des opérations.
+
+Exemples :
+  3x + 5
+  2x² - 7x + 4
+  (x - 2)(x + 6)
+
+La lettre x représente une variable : elle peut prendre différentes valeurs.
+
+Calculer l'image d'un nombre consiste à remplacer x par ce nombre puis à
+effectuer les calculs.
+
+Exemple :
+  f(x) = 2x² - 3x + 1
+
+Pour calculer f(2), on remplace chaque x par 2 :
+  f(2) = 2 × 2² - 3 × 2 + 1
+       = 2 × 4 - 6 + 1
+       = 8 - 6 + 1
+       = 3
+
+Donc l'image de 2 est 3.
+
+Attention aux priorités :
+1. Parenthèses
+2. Puissances
+3. Multiplications et divisions
+4. Additions et soustractions
+
+Exemple :
+  -3² = -(3²) = -9
+  (-3)² = (-3) × (-3) = 9
+
+Ces deux expressions ne sont pas égales.
+
+======================================================================
+2. DÉFINITION D'UN POLYNÔME DU SECOND DEGRÉ
+======================================================================
+
+Un polynôme du second degré est une expression qui peut s'écrire :
+
+  f(x) = ax² + bx + c
+
+avec :
+  a, b et c des nombres réels ;
+  a différent de 0.
+
+Le terme ax² est le terme de degré 2.
+Le terme bx est le terme de degré 1.
+Le terme c est le terme constant.
+
+Pourquoi a doit-il être différent de zéro ?
+Parce que si a = 0, le terme en x² disparaît. L'expression devient bx + c,
+qui est de degré inférieur ou égal à 1.
+
+Exemple :
+  f(x) = 4x² - 5x + 7
+
+On identifie :
+  a = 4
+  b = -5
+  c = 7
+
+Autre exemple :
+  g(x) = -2x² + 9
+
+On peut écrire :
+  g(x) = -2x² + 0x + 9
+
+Donc :
+  a = -2
+  b = 0
+  c = 9
+
+Autre exemple :
+  h(x) = x² - 6x
+
+On peut écrire :
+  h(x) = 1x² - 6x + 0
+
+Donc :
+  a = 1
+  b = -6
+  c = 0
+
+À retenir :
+- Le coefficient a est toujours celui qui multiplie x².
+- Le coefficient b multiplie x.
+- Le coefficient c est le nombre sans x.
+- Un coefficient absent vaut 0.
+- Un coefficient égal à 1 ou -1 est souvent écrit sans le chiffre 1.
+
+Exemples d'identification :
+  7x² + 2x - 8  : a = 7, b = 2, c = -8
+  -x² + 3x + 1  : a = -1, b = 3, c = 1
+  5x² - 4       : a = 5, b = 0, c = -4
+  3x² + 10x     : a = 3, b = 10, c = 0
+
+======================================================================
+3. VOCABULAIRE ESSENTIEL
+======================================================================
+
+Polynôme :
+Expression formée d'une somme de termes comportant des puissances entières
+positives ou nulles de la variable, multipliées par des coefficients.
+
+Fonction :
+Règle qui associe à chaque valeur autorisée de x une valeur f(x).
+
+Image :
+Valeur obtenue en calculant f(x) pour un x donné.
+
+Antécédent :
+Valeur de x qui donne une image donnée.
+
+Racine ou zéro :
+Nombre r tel que f(r) = 0.
+
+Courbe représentative :
+Ensemble des points de coordonnées (x ; f(x)).
+
+Parabole :
+Courbe représentative d'une fonction polynôme du second degré.
+
+Sommet :
+Point particulier de la parabole où la fonction atteint son minimum ou son
+maximum sur l'ensemble des réels.
+
+Axe de symétrie :
+Droite verticale qui partage la parabole en deux parties symétriques.
+
+Ordonnée à l'origine :
+Valeur f(0). Pour ax² + bx + c, elle vaut c.
+
+Extremum :
+Valeur minimale ou maximale atteinte par une fonction.
+
+Forme développée :
+Écriture ax² + bx + c.
+
+Forme factorisée :
+Écriture sous la forme a(x-r1)(x-r2), lorsqu'elle existe sur les réels.
+
+Forme canonique :
+Écriture a(x-α)² + β.
+
+======================================================================
+4. LES TROIS FORMES D'UN POLYNÔME
+======================================================================
+
+Un même polynôme peut être écrit de plusieurs façons. Chaque forme met en
+évidence des informations différentes.
+
+A. Forme développée réduite
+
+  f(x) = ax² + bx + c
+
+Elle permet d'identifier directement a, b et c.
+Elle est pratique pour développer, réduire et calculer f(0).
+
+Exemple :
+  f(x) = 2x² - 8x + 6
+
+B. Forme factorisée
+
+  f(x) = a(x-r1)(x-r2)
+
+Cette écriture est possible lorsque le polynôme possède deux racines réelles,
+en comptant éventuellement une racine double.
+
+Elle permet de lire immédiatement les racines :
+  x = r1
+  x = r2
+
+Exemple :
+  f(x) = 2(x-1)(x-3)
+
+Les racines sont 1 et 3, car :
+  f(1) = 2(0)(-2) = 0
+  f(3) = 2(2)(0) = 0
+
+C. Forme canonique
+
+  f(x) = a(x-α)² + β
+
+Elle permet de lire le sommet :
+  S(α ; β)
+
+L'axe de symétrie est :
+  x = α
+
+Exemple :
+  f(x) = 2(x-3)² - 8
+
+Le sommet est S(3 ; -8).
+L'axe de symétrie est x = 3.
+
+D. Pourquoi choisir une forme plutôt qu'une autre ?
+
+Pour identifier les coefficients :
+  utiliser la forme développée.
+
+Pour connaître les racines et étudier le signe :
+  utiliser la forme factorisée.
+
+Pour connaître le sommet, l'axe et les variations :
+  utiliser la forme canonique.
+
+Pour tracer la courbe :
+  utiliser les informations des différentes formes.
+
+======================================================================
+5. DÉVELOPPER, RÉDUIRE ET FACTORISER
+======================================================================
+
+A. Développer
+
+Développer consiste à transformer un produit en somme.
+
+Distributivité :
+  k(a+b) = ka + kb
+
+Exemple :
+  3(x+4) = 3x + 12
+
+Avec deux parenthèses :
+  (x+2)(x+5)
+  = x×x + x×5 + 2×x + 2×5
+  = x² + 5x + 2x + 10
+  = x² + 7x + 10
+
+B. Réduire
+
+Réduire consiste à regrouper les termes de même nature.
+
+Exemple :
+  4x² + 3x - 2x² + 5x - 7
+  = 2x² + 8x - 7
+
+On ne peut pas additionner x² et x, car ce ne sont pas des termes de même
+degré.
+
+C. Factoriser
+
+Factoriser consiste à transformer une somme en produit.
+
+Exemple :
+  3x² + 12x
+  = 3x(x + 4)
+
+On met 3x en facteur.
+
+Autre exemple :
+  x² - 9
+  = (x - 3)(x + 3)
+
+On utilise l'identité remarquable :
+  A² - B² = (A-B)(A+B)
+
+Identités remarquables à connaître :
+  (A+B)² = A² + 2AB + B²
+  (A-B)² = A² - 2AB + B²
+  (A-B)(A+B) = A² - B²
+
+D. Vérifier une factorisation
+
+Pour vérifier, on peut développer le produit obtenu.
+
+Exemple :
+  (x-2)(x+5)
+  = x² + 5x - 2x - 10
+  = x² + 3x - 10
+
+Donc :
+  x² + 3x - 10 = (x-2)(x+5)
+
+======================================================================
+6. FONCTION ASSOCIÉE ET REPRÉSENTATION GRAPHIQUE
+======================================================================
+
+À un polynôme f(x), on associe une fonction qui à chaque nombre x fait
+correspondre le résultat f(x).
+
+Exemple :
+  f(x) = x² - 4x + 3
+
+Quelques images :
+  f(0) = 3
+  f(1) = 0
+  f(2) = -1
+  f(3) = 0
+  f(4) = 3
+
+Tableau de valeurs :
+
+  x      -1     0     1     2     3     4     5
+  f(x)    8     3     0    -1     0     3     8
+
+Chaque couple (x ; f(x)) correspond à un point de la courbe.
+
+La courbe d'une fonction polynôme du second degré est une parabole.
+
+La représentation graphique permet notamment :
+- de lire approximativement les racines ;
+- de repérer le sommet ;
+- de visualiser l'axe de symétrie ;
+- de savoir si la fonction possède un minimum ou un maximum ;
+- de lire le signe de la fonction ;
+- de résoudre graphiquement f(x)=k.
+
+Attention : une lecture graphique donne souvent une valeur approchée.
+Un calcul algébrique peut être nécessaire pour obtenir une valeur exacte.
+
+======================================================================
+7. LA PARABOLE : SENS, ORIENTATION ET ALLURE
+======================================================================
+
+Pour f(x)=ax²+bx+c, le signe de a détermine l'orientation de la parabole.
+
+Si a > 0 :
+- la parabole est tournée vers le haut ;
+- elle a une forme de U ;
+- elle possède un minimum.
+
+Si a < 0 :
+- la parabole est tournée vers le bas ;
+- elle a une forme de U renversé ;
+- elle possède un maximum.
+
+Plus la valeur absolue de a est grande, plus la parabole est resserrée.
+Lorsque la valeur absolue de a est petite, la parabole est plus large.
+
+Exemples :
+  f(x)=3x² : parabole vers le haut, resserrée.
+  g(x)=0,5x² : parabole vers le haut, plus large.
+  h(x)=-2x² : parabole vers le bas.
+
+Cas particulier :
+  f(x)=ax²
+
+Le sommet est O(0 ; 0), et l'axe de symétrie est l'axe des ordonnées.
+
+Cas :
+  f(x)=ax²+c
+
+Le sommet est S(0 ; c), et l'axe de symétrie reste x=0.
+
+======================================================================
+8. SOMMET ET AXE DE SYMÉTRIE
+======================================================================
+
+Le sommet est le point où la parabole change de sens de variation.
+
+Dans la forme canonique :
+  f(x)=a(x-α)²+β
+
+Le sommet est directement :
+  S(α ; β)
+
+L'axe de symétrie est :
+  x=α
+
+Exemple :
+  f(x)=3(x-2)²-5
+
+On lit :
+  α=2
+  β=-5
+
+Donc :
+  sommet S(2 ; -5)
+  axe de symétrie x=2
+
+Attention au signe dans la parenthèse :
+  (x-4)² donne α=4.
+  (x+4)² = (x-(-4))² donne α=-4.
+
+A. Trouver le sommet à partir d'une forme développée
+
+Pour la fonction :
+  f(x)=ax²+bx+c
+
+Une méthode possible consiste à rechercher l'axe de symétrie à partir de
+deux points de même ordonnée.
+
+On cherche les deux solutions de :
+  f(x)=c
+
+Or :
+  ax²+bx+c=c
+  ax²+bx=0
+  x(ax+b)=0
+
+Les solutions sont :
+  x=0
+  ou x=-b/a
+
+L'axe de symétrie se situe au milieu de ces deux abscisses :
+  α = -b/(2a)
+
+Puis on calcule :
+  β=f(α)
+
+La formule générale du sommet est donc :
+  α=-b/(2a)
+  β=f(α)
+
+Cette formule est présentée ici comme un outil complémentaire. Dans le
+programme de première technologique 2026-2027, aucune formule n'est exigée :
+on peut notamment déterminer l'axe par une démarche de symétrie.
+
+Exemple détaillé :
+  f(x)=x²-6x+5
+
+Ici :
+  a=1 ; b=-6 ; c=5
+
+Abscisse du sommet :
+  α=-(-6)/(2×1)=6/2=3
+
+Ordonnée :
+  β=f(3)
+  β=3²-6×3+5
+  β=9-18+5
+  β=-4
+
+Sommet :
+  S(3 ; -4)
+
+Axe :
+  x=3
+
+B. Retrouver la forme canonique par complétion du carré
+
+Exemple :
+  f(x)=x²-6x+5
+
+On regroupe :
+  f(x)=(x²-6x)+5
+
+On ajoute et on retire 9 :
+  f(x)=(x²-6x+9)-9+5
+
+On reconnaît :
+  x²-6x+9=(x-3)²
+
+Donc :
+  f(x)=(x-3)²-4
+
+Le sommet est bien S(3 ; -4).
+
+Pour un coefficient a différent de 1, on commence par le mettre en facteur
+devant les deux premiers termes.
+
+Exemple :
+  f(x)=2x²-8x+3
+  =2(x²-4x)+3
+  =2[(x-2)²-4]+3
+  =2(x-2)²-8+3
+  =2(x-2)²-5
+
+Sommet S(2 ; -5).
+
+======================================================================
+9. VARIATIONS ET EXTREMUM
+======================================================================
+
+Une fonction est croissante lorsque ses valeurs augmentent quand x augmente.
+Elle est décroissante lorsque ses valeurs diminuent quand x augmente.
+
+Pour une fonction du second degré :
+
+Si a > 0 :
+- la fonction est décroissante jusqu'au sommet ;
+- elle atteint un minimum au sommet ;
+- elle est ensuite croissante.
+
+Si a < 0 :
+- la fonction est croissante jusqu'au sommet ;
+- elle atteint un maximum au sommet ;
+- elle est ensuite décroissante.
+
+Exemple :
+  f(x)=2(x-3)²-8
+
+Le sommet est S(3 ; -8).
+Comme a=2 est positif :
+- f est décroissante sur ]-∞ ; 3] ;
+- f est croissante sur [3 ; +∞[ ;
+- son minimum vaut -8, atteint pour x=3.
+
+Exemple :
+  g(x)=-3(x+1)²+4
+
+Le sommet est S(-1 ; 4).
+Comme a=-3 est négatif :
+- g est croissante sur ]-∞ ; -1] ;
+- g est décroissante sur [-1 ; +∞[ ;
+- son maximum vaut 4, atteint pour x=-1.
+
+Tableaux de variations à savoir interpréter :
+
+Pour a positif :
+  x       -∞          α          +∞
+  f       +∞    ↓     β     ↑    +∞
+
+Pour a négatif :
+  x       -∞          α          +∞
+  f       -∞    ↑     β     ↓    -∞
+
+Ces tableaux indiquent les variations et non le signe de la fonction.
+
+Ne pas confondre :
+- tableau de variations : indique si la fonction monte ou descend ;
+- tableau de signes : indique si la fonction est positive, nulle ou négative.
+
+======================================================================
+10. RACINES ET INTERSECTIONS AVEC L'AXE DES ABSCISSES
+======================================================================
+
+Une racine est une valeur r qui vérifie :
+  f(r)=0
+
+Graphiquement, une racine correspond à l'abscisse d'un point où la parabole
+rencontre l'axe horizontal (axe des abscisses).
+
+Une parabole peut :
+- couper l'axe des abscisses en deux points ;
+- toucher l'axe en un seul point ;
+- ne pas rencontrer l'axe des abscisses.
+
+Exemple :
+  f(x)=x²-5x+6
+
+On factorise :
+  f(x)=(x-2)(x-3)
+
+Pour trouver les racines :
+  (x-2)(x-3)=0
+
+Un produit est nul si au moins un de ses facteurs est nul :
+  x-2=0 ou x-3=0
+
+Donc :
+  x=2 ou x=3
+
+Les racines sont 2 et 3.
+
+Vérification :
+  f(2)=4-10+6=0
+  f(3)=9-15+6=0
+
+Exemple avec une racine double :
+  f(x)=(x-4)²
+
+La seule racine est 4.
+La parabole touche l'axe en (4 ; 0), sans le traverser.
+
+Exemple sans racine réelle :
+  f(x)=x²+1
+
+Comme x² est toujours positif ou nul :
+  x²+1 est toujours strictement positif.
+La fonction ne s'annule jamais sur les réels.
+
+======================================================================
+11. FORME FACTORISÉE ET RACINES
+======================================================================
+
+Si un polynôme s'écrit :
+  f(x)=a(x-r1)(x-r2)
+
+Alors :
+  f(r1)=0
+  f(r2)=0
+
+Les deux racines sont donc r1 et r2.
+
+Exemple :
+  f(x)=5(x+2)(x-7)
+
+On réécrit :
+  f(x)=5(x-(-2))(x-7)
+
+Racines :
+  -2 et 7
+
+Attention :
+  x+2=0 donne x=-2
+  x-7=0 donne x=7
+
+Autre exemple :
+  f(x)=-2(3x-6)(x+4)
+
+On résout :
+  3x-6=0 donne x=2
+  x+4=0 donne x=-4
+
+Les racines sont 2 et -4.
+Le facteur -2 ne change pas les racines.
+
+A. Factoriser en connaissant une racine
+
+Si r est une racine, alors (x-r) est un facteur du polynôme.
+
+Exemple :
+  f(x)=x²-5x+6
+
+On sait que 2 est une racine car :
+  f(2)=4-10+6=0
+
+On peut donc écrire :
+  f(x)=(x-2)(x+k)
+
+On développe :
+  (x-2)(x+k)=x²+(k-2)x-2k
+
+On compare avec x²-5x+6 :
+  k-2=-5 donc k=-3
+  -2k=6, ce qui confirme k=-3.
+
+Donc :
+  f(x)=(x-2)(x-3)
+
+B. Factorisation par facteur commun
+
+  2x²-8x = 2x(x-4)
+
+Racines :
+  x=0 et x=4.
+
+C. Factorisation avec une identité remarquable
+
+  x²-16=(x-4)(x+4)
+
+Racines :
+  -4 et 4.
+
+======================================================================
+12. SIGNE D'UN POLYNÔME DU SECOND DEGRÉ
+======================================================================
+
+Étudier le signe de f(x), c'est déterminer pour quelles valeurs de x :
+- f(x) est positif ;
+- f(x) est nul ;
+- f(x) est négatif.
+
+A. Signe d'un produit
+
+Règle des signes :
+  positif × positif = positif
+  négatif × négatif = positif
+  positif × négatif = négatif
+  négatif × positif = négatif
+
+Un produit est positif lorsque ses facteurs ont le même signe.
+Il est négatif lorsque ses facteurs ont des signes contraires.
+
+B. Exemple complet
+
+  f(x)=(x-2)(x-5)
+
+Premier facteur :
+  x-2 est négatif si x<2, nul si x=2, positif si x>2.
+
+Deuxième facteur :
+  x-5 est négatif si x<5, nul si x=5, positif si x>5.
+
+On obtient :
+
+  x          ]-∞ ; 2[    2    ]2 ; 5[    5    ]5 ; +∞[
+  x-2            -        0       +             +
+  x-5            -                -       0     +
+  f(x)           +        0       -       0     +
+
+Conclusion :
+  f(x)>0 pour x<2 ou x>5.
+  f(x)=0 pour x=2 ou x=5.
+  f(x)<0 pour 2<x<5.
+
+C. Influence du coefficient a
+
+Pour :
+  f(x)=a(x-r1)(x-r2), avec r1<r2
+
+Si a>0 :
+- le polynôme est positif à l'extérieur des racines ;
+- il est négatif entre les racines.
+
+Si a<0 :
+- le polynôme est négatif à l'extérieur des racines ;
+- il est positif entre les racines.
+
+Le signe change à chaque racine simple.
+
+Exemple :
+  f(x)=-3(x+1)(x-4)
+
+Racines : -1 et 4.
+Le coefficient a=-3 est négatif.
+
+Signe :
+- négatif sur ]-∞ ; -1[ ;
+- nul en -1 ;
+- positif sur ]-1 ; 4[ ;
+- nul en 4 ;
+- négatif sur ]4 ; +∞[.
+
+D. Racine double
+
+Exemple :
+  f(x)=2(x-3)²
+
+Un carré est toujours positif ou nul.
+Donc :
+  f(x)≥0 pour tout réel x.
+  f(x)=0 uniquement pour x=3.
+
+Le signe ne change pas en traversant la racine double.
+
+E. Polynôme sans racine réelle
+
+Un polynôme du second degré sans racine réelle garde toujours le signe de a.
+Exemple :
+  f(x)=2x²+3
+
+Comme x²≥0 :
+  2x²+3>0 pour tout réel x.
+
+======================================================================
+13. RÉSOUDRE UNE ÉQUATION ET UNE INÉQUATION
+======================================================================
+
+A. Équation du type f(x)=0
+
+Exemple :
+  (x-3)(x+2)=0
+
+On applique la règle du produit nul :
+  x-3=0 ou x+2=0
+
+Donc :
+  x=3 ou x=-2
+
+Ensemble des solutions :
+  S={-2 ; 3}
+
+B. Équation du type f(x)=k
+
+Exemple :
+  (x-2)²-9=0
+
+On isole le carré :
+  (x-2)²=9
+
+Donc :
+  x-2=3 ou x-2=-3
+
+Solutions :
+  x=5 ou x=-1
+
+On peut aussi développer ou factoriser :
+  (x-2)²-9
+  =[(x-2)-3][(x-2)+3]
+  =(x-5)(x+1)
+
+C. Inéquation
+
+Exemple :
+  (x-1)(x-4)>0
+
+Le produit est positif à l'extérieur des racines.
+
+Solutions :
+  x<1 ou x>4
+
+En notation d'intervalles :
+  S=]-∞ ; 1[ ∪ ]4 ; +∞[
+
+Pour :
+  (x-1)(x-4)≤0
+
+Solutions :
+  S=[1 ; 4]
+
+Attention :
+- signe strict > ou < : les racines ne sont pas incluses ;
+- signe large ≥ ou ≤ : les racines sont incluses si elles annulent l'expression.
+
+D. Résoudre graphiquement
+
+Résoudre f(x)=0 :
+lire les abscisses des intersections avec l'axe horizontal.
+
+Résoudre f(x)=k :
+tracer mentalement ou réellement la droite horizontale y=k et lire les
+abscisses des points d'intersection.
+
+Résoudre f(x)>k :
+repérer les portions de la courbe situées au-dessus de la droite y=k.
+
+Résoudre f(x)<k :
+repérer les portions situées en dessous.
+
+======================================================================
+14. MÉTHODES DE RÉSOLUTION SELON LES INFORMATIONS DISPONIBLES
+======================================================================
+
+Méthode 1 — Le polynôme est déjà factorisé
+
+Exemple :
+  f(x)=4(x-2)(x+3)
+
+Racines :
+  2 et -3.
+
+Signe :
+étudier séparément x-2 et x+3, puis multiplier les signes.
+Le coefficient 4 est positif.
+
+Méthode 2 — Une racine est évidente
+
+Pour tester une valeur r, calculer f(r).
+
+Exemple :
+  f(x)=x²-7x+12
+
+Test de 3 :
+  f(3)=9-21+12=0
+
+Donc 3 est une racine.
+On peut ensuite factoriser par x-3 :
+  f(x)=(x-3)(x-4)
+
+Méthode 3 — Identité remarquable
+
+Exemple :
+  f(x)=x²-25
+  =(x-5)(x+5)
+
+Méthode 4 — Mise en facteur commun
+
+Exemple :
+  f(x)=3x²+12x
+  =3x(x+4)
+
+Méthode 5 — Lecture graphique
+
+On utilise les intersections avec l'axe horizontal et la forme de la parabole.
+Cette méthode donne une lecture approchée si les coordonnées ne sont pas
+exactement lisibles.
+
+Méthode 6 — Solveur
+
+Si les racines ne sont pas évidentes, un solveur de calculatrice ou un logiciel
+peut être utilisé lorsque cela est autorisé et adapté à la consigne.
+Il faut savoir interpréter le résultat et vérifier qu'il correspond au problème.
+
+======================================================================
+15. APPROFONDISSEMENT : DISCRIMINANT
+======================================================================
+
+ATTENTION : cette partie dépasse l'attendu explicite du programme de première
+technologique 2026-2027 décrit dans la partie 26. Elle est incluse pour
+compléter l'archive et comprendre la méthode générale de résolution.
+
+Pour :
+  f(x)=ax²+bx+c
+avec a différent de 0,
+
+on définit le discriminant :
+  Δ=b²-4ac
+
+Le discriminant permet de déterminer le nombre de racines réelles.
+
+Cas 1 : Δ>0
+
+Il existe deux racines réelles distinctes.
+
+Cas 2 : Δ=0
+
+Il existe une racine réelle double.
+
+Cas 3 : Δ<0
+
+Il n'existe aucune racine réelle.
+
+Exemple :
+  f(x)=x²-5x+6
+
+a=1 ; b=-5 ; c=6
+
+Δ=(-5)²-4×1×6
+Δ=25-24
+Δ=1
+
+Comme Δ>0, il existe deux racines réelles distinctes.
+
+Exemple :
+  f(x)=x²-4x+4
+
+a=1 ; b=-4 ; c=4
+
+Δ=(-4)²-4×1×4
+Δ=16-16
+Δ=0
+
+Il existe une racine double.
+
+Exemple :
+  f(x)=x²+2x+5
+
+a=1 ; b=2 ; c=5
+
+Δ=2²-4×1×5
+Δ=4-20
+Δ=-16
+
+Il n'existe aucune racine réelle.
+
+Astuces de calcul :
+- Toujours mettre les parenthèses autour de b.
+- Le carré d'un nombre négatif est positif.
+- Respecter les signes de a, b et c.
+- Écrire une ligne de calcul par étape.
+
+======================================================================
+16. APPROFONDISSEMENT : FORMULES DES RACINES
+======================================================================
+
+Cette partie complète la méthode du discriminant.
+
+Si Δ>0 :
+  x1=(-b-√Δ)/(2a)
+  x2=(-b+√Δ)/(2a)
+
+Si Δ=0 :
+  x0=-b/(2a)
+
+Si Δ<0 :
+  aucune racine réelle.
+
+Exemple :
+  f(x)=2x²-5x+2
+
+a=2 ; b=-5 ; c=2
+
+Discriminant :
+  Δ=(-5)²-4×2×2
+  =25-16
+  =9
+
+Racines :
+  x1=(5-√9)/(4)
+     =(5-3)/4
+     =1/2
+
+  x2=(5+√9)/4
+     =(5+3)/4
+     =2
+
+Factorisation :
+  f(x)=2(x-1/2)(x-2)
+
+On peut aussi écrire :
+  f(x)=(2x-1)(x-2)
+
+Vérification par développement :
+  (2x-1)(x-2)
+  =2x²-4x-x+2
+  =2x²-5x+2
+
+======================================================================
+17. APPROFONDISSEMENT : SOMME ET PRODUIT DES RACINES
+======================================================================
+
+Pour un polynôme :
+  ax²+bx+c
+ayant deux racines réelles r1 et r2,
+
+on a :
+  r1+r2=-b/a
+  r1×r2=c/a
+
+Ces relations sont appelées relations de Viète.
+
+Exemple :
+  f(x)=x²-7x+10
+
+Somme des racines :
+  -b/a = -(-7)/1 = 7
+
+Produit :
+  c/a = 10/1 = 10
+
+Les deux nombres 2 et 5 ont une somme égale à 7 et un produit égal à 10.
+Donc :
+  f(x)=(x-2)(x-5)
+
+Attention : ces relations servent à contrôler ou retrouver des racines dans
+des cas simples. Elles ne remplacent pas une justification complète si
+l'exercice demande une démonstration.
+
+======================================================================
+18. LIRE ET EXPLOITER UN GRAPHIQUE
+======================================================================
+
+Pour analyser une parabole, suivre cet ordre :
+
+1. Identifier l'orientation :
+   vers le haut ou vers le bas.
+
+2. Repérer le sommet :
+   lire ses coordonnées (α ; β).
+
+3. Repérer l'axe de symétrie :
+   droite verticale x=α.
+
+4. Lire les racines :
+   intersections avec l'axe des abscisses.
+
+5. Lire l'ordonnée à l'origine :
+   intersection avec l'axe vertical, égale à f(0).
+
+6. Lire les variations :
+   décroissante puis croissante si la parabole est tournée vers le haut ;
+   croissante puis décroissante si elle est tournée vers le bas.
+
+7. Lire le signe :
+   au-dessus de l'axe horizontal : f(x)>0 ;
+   sur l'axe : f(x)=0 ;
+   en dessous : f(x)<0.
+
+Symétrie :
+Deux points de la parabole situés à la même distance horizontale de l'axe
+ont la même ordonnée.
+
+Exemple :
+Si l'axe est x=3, les abscisses 1 et 5 sont symétriques car elles sont à
+deux unités de 3. Ainsi f(1)=f(5).
+
+======================================================================
+19. PROBLÈMES CONCRETS ET MODÉLISATION
+======================================================================
+
+Les polynômes du second degré apparaissent dans de nombreuses situations :
+trajectoires, géométrie, optimisation, coûts, recettes et évolutions.
+
+A. Trajectoire d'un objet
+
+La hauteur d'un objet peut être modélisée par :
+  h(t)=-5t²+20t+1
+
+où t représente le temps en secondes et h(t) la hauteur en mètres.
+
+Le coefficient a=-5 est négatif : la parabole est tournée vers le bas.
+La hauteur possède donc un maximum.
+
+Sommet :
+  α=-b/(2a)
+    =-20/(2×(-5))
+    =2
+
+Hauteur à t=2 :
+  h(2)=-5×4+20×2+1
+      =-20+40+1
+      =21
+
+La hauteur maximale modélisée est de 21 mètres, atteinte après 2 secondes.
+
+B. Optimisation d'une aire
+
+On dispose d'un rectangle dont le périmètre est fixé à 20 m.
+Si sa largeur est x, sa longueur vaut 10-x.
+
+Aire :
+  A(x)=x(10-x)
+      =-x²+10x
+
+On peut écrire :
+  A(x)=-(x-5)²+25
+
+L'aire maximale est 25 m² pour x=5 m.
+Le rectangle est alors un carré de côté 5 m.
+
+C. Coût ou bénéfice
+
+Un bénéfice peut être modélisé par :
+  B(x)=-2x²+40x-100
+
+Le coefficient négatif indique que la courbe est tournée vers le bas.
+Le sommet donne la quantité x qui maximise le bénéfice dans le modèle.
+
+Calcul :
+  α=-40/(2×(-2))=10
+  B(10)=-200+400-100=100
+
+Le bénéfice maximal modélisé est 100 unités monétaires pour x=10.
+
+D. Interpréter les unités
+
+Toujours préciser :
+- ce que représente x ;
+- ce que représente f(x) ;
+- les unités ;
+- le domaine réaliste du problème.
+
+Une fonction peut être définie mathématiquement pour tout réel, mais le
+problème concret peut limiter x à un intervalle.
+
+Par exemple, un temps ne peut généralement pas être négatif.
+Une longueur ne peut généralement pas être négative.
+
+======================================================================
+20. MÉTHODE DE RÉDACTION ATTENDUE
+======================================================================
+
+Une bonne réponse doit montrer la démarche, pas seulement le résultat.
+
+A. Identifier les coefficients
+
+Écrire :
+  f(x)=...x²+...x+...
+Donc a=..., b=..., c=...
+
+B. Vérifier une racine
+
+Pour vérifier que r est une racine :
+  f(r)=...
+  f(r)=0
+Donc r est une racine de f.
+
+C. Résoudre une équation produit nul
+
+Écrire :
+  f(x)=0
+  ...
+  (facteur 1)(facteur 2)=0
+
+Puis :
+  facteur 1=0 ou facteur 2=0
+
+Enfin :
+  x=... ou x=...
+
+D. Étudier le signe
+
+1. Factoriser si possible.
+2. Déterminer les racines.
+3. Placer les racines dans l'ordre croissant.
+4. Déterminer le signe de chaque facteur.
+5. Multiplier les signes.
+6. Donner une conclusion en intervalles.
+
+E. Déterminer le sommet
+
+Si la forme canonique est donnée :
+  f(x)=a(x-α)²+β
+  S(α ; β)
+
+Sinon, utiliser la méthode enseignée en classe ou la formule complémentaire,
+selon le niveau et la consigne.
+
+F. Donner les variations
+
+1. Repérer le signe de a.
+2. Repérer l'abscisse du sommet.
+3. Indiquer le sens de variation de chaque côté.
+4. Préciser le minimum ou maximum.
+
+======================================================================
+21. ERREURS FRÉQUENTES
+======================================================================
+
+Erreur 1 : oublier le signe du coefficient.
+
+Dans :
+  f(x)=-3x²+2x+1
+on a a=-3 et non 3.
+
+Erreur 2 : confondre x+4 et x-4.
+
+  x+4=0 donne x=-4.
+  x-4=0 donne x=4.
+
+Erreur 3 : oublier le coefficient devant les parenthèses.
+
+  3(x-2)(x+1)=0
+Les racines sont -1 et 2, mais le facteur 3 ne donne pas de racine.
+
+Erreur 4 : oublier la règle du produit nul.
+
+  AB=0 implique A=0 OU B=0.
+On ne divise pas par une expression qui peut être nulle sans examiner
+ce cas.
+
+Erreur 5 : confondre racine et sommet.
+
+Une racine est une abscisse où f(x)=0.
+Le sommet est le point où la parabole atteint son extremum.
+
+Erreur 6 : confondre variations et signe.
+
+Une fonction décroissante peut être positive, négative ou passer par zéro.
+
+Erreur 7 : mal lire une forme canonique.
+
+  (x+3)² = (x-(-3))²
+Le sommet a pour abscisse -3.
+
+Erreur 8 : croire qu'une parabole tournée vers le haut est toujours positive.
+
+Elle est tournée vers le haut, mais elle peut être négative entre deux racines.
+
+Erreur 9 : inclure une borne dans une inéquation stricte.
+
+  f(x)>0 exclut les racines.
+  f(x)≥0 peut les inclure.
+
+Erreur 10 : utiliser une approximation comme si elle était exacte.
+
+Une lecture graphique de 2,1 ne prouve pas que la racine exacte vaut 2,1.
+
+Erreur 11 : oublier les parenthèses avec les nombres négatifs.
+
+  (-4)²=16
+  -4²=-16
+
+Erreur 12 : annoncer un résultat sans unité dans un problème concret.
+
+Si x est un temps, préciser les secondes ou minutes ; si f(x) est une aire,
+préciser les m², etc.
+
+======================================================================
+22. FICHE DE RÉVISION ET FORMULES ESSENTIELLES
+======================================================================
+
+FORME DÉVELOPPÉE
+  f(x)=ax²+bx+c
+  avec a différent de 0.
+
+FORME CANONIQUE
+  f(x)=a(x-α)²+β
+  Sommet : S(α ; β)
+  Axe : x=α
+
+FORME FACTORISÉE
+  f(x)=a(x-r1)(x-r2)
+  Racines : r1 et r2.
+
+ORIENTATION
+  a>0 : parabole vers le haut, minimum.
+  a<0 : parabole vers le bas, maximum.
+
+VARIATIONS
+  a>0 : décroissante puis croissante.
+  a<0 : croissante puis décroissante.
+
+RACINE
+  r est une racine si f(r)=0.
+
+PRODUIT NUL
+  AB=0 équivaut à A=0 ou B=0.
+
+SIGNE AVEC DEUX RACINES DISTINCTES
+  Si a>0 : positif à l'extérieur, négatif entre les racines.
+  Si a<0 : négatif à l'extérieur, positif entre les racines.
+
+ORDONNÉE À L'ORIGINE
+  f(0)=c.
+
+FORMULES COMPLÉMENTAIRES — APPROFONDISSEMENT
+  α=-b/(2a)
+  β=f(α)
+  Δ=b²-4ac
+
+Si Δ>0 :
+  x1=(-b-√Δ)/(2a)
+  x2=(-b+√Δ)/(2a)
+
+Si Δ=0 :
+  x0=-b/(2a)
+
+Si Δ<0 :
+  aucune racine réelle.
+
+SOMME ET PRODUIT
+  r1+r2=-b/a
+  r1×r2=c/a
+
+======================================================================
+23. EXERCICES PROGRESSIFS CORRIGÉS
+======================================================================
+
+EXERCICE 1 — Identifier les coefficients
+
+Soit :
+  f(x)=-4x²+7x-9
+
+Donner a, b et c.
+
+CORRECTION :
+  a=-4
+  b=7
+  c=-9
+
+EXERCICE 2 — Calculer une image
+
+Soit :
+  f(x)=2x²-3x+4
+
+Calculer f(2).
+
+CORRECTION :
+  f(2)=2×2²-3×2+4
+      =8-6+4
+      =6
+
+EXERCICE 3 — Développer
+
+Développer :
+  (x-3)(x+4)
+
+CORRECTION :
+  x²+4x-3x-12
+  =x²+x-12
+
+EXERCICE 4 — Factoriser
+
+Factoriser :
+  5x²-15x
+
+CORRECTION :
+  5x(x-3)
+
+EXERCICE 5 — Trouver les racines
+
+Résoudre :
+  (x-6)(x+2)=0
+
+CORRECTION :
+  x-6=0 ou x+2=0
+  x=6 ou x=-2
+
+EXERCICE 6 — Vérifier une racine
+
+Soit :
+  f(x)=x²-4x+3
+
+Vérifier si 1 est une racine.
+
+CORRECTION :
+  f(1)=1-4+3=0
+Donc 1 est une racine.
+
+EXERCICE 7 — Factoriser avec une racine connue
+
+Soit :
+  f(x)=x²-4x+3
+
+On sait que 1 est une racine.
+
+CORRECTION :
+  f(x)=(x-1)(x-3)
+Vérification :
+  (x-1)(x-3)=x²-4x+3.
+
+EXERCICE 8 — Étudier un signe
+
+Étudier le signe de :
+  f(x)=(x+1)(x-4)
+
+CORRECTION :
+Racines : -1 et 4.
+Le coefficient devant le produit est positif.
+
+Signe :
+  positif sur ]-∞ ; -1[
+  nul en -1
+  négatif sur ]-1 ; 4[
+  nul en 4
+  positif sur ]4 ; +∞[
+
+EXERCICE 9 — Variations
+
+Soit :
+  f(x)=-(x-2)²+7
+
+Donner le sommet, l'axe et les variations.
+
+CORRECTION :
+  Sommet S(2 ; 7)
+  Axe x=2
+Le coefficient a=-1 est négatif.
+La fonction est croissante jusqu'à 2, puis décroissante.
+Maximum : 7.
+
+EXERCICE 10 — Forme canonique
+
+Mettre sous forme canonique :
+  f(x)=x²+8x+10
+
+CORRECTION :
+  x²+8x+10
+  =(x²+8x+16)-16+10
+  =(x+4)²-6
+
+Sommet :
+  S(-4 ; -6)
+
+EXERCICE 11 — Inéquation
+
+Résoudre :
+  (x-2)(x-5)≤0
+
+CORRECTION :
+Le produit est négatif entre les racines et nul aux racines.
+  S=[2 ; 5]
+
+EXERCICE 12 — Discriminant (approfondissement)
+
+Résoudre :
+  x²-6x+8=0
+
+CORRECTION :
+  a=1 ; b=-6 ; c=8
+  Δ=(-6)²-4×1×8
+  Δ=36-32=4
+
+  x1=(6-2)/2=2
+  x2=(6+2)/2=4
+
+Solutions :
+  2 et 4.
+
+EXERCICE 13 — Problème d'aire
+
+Un rectangle a un périmètre de 24 cm.
+On note x sa largeur. Sa longueur vaut 12-x.
+Exprimer son aire et trouver l'aire maximale.
+
+CORRECTION :
+  A(x)=x(12-x)
+      =-x²+12x
+      =-(x-6)²+36
+
+Le sommet est S(6 ; 36).
+L'aire maximale est 36 cm² lorsque le rectangle est un carré de 6 cm de côté.
+
+======================================================================
+24. EXERCICES SUPPLÉMENTAIRES
+======================================================================
+
+Les exercices ci-dessous peuvent être faits sans regarder les corrections
+précédentes. Ils permettent de vérifier que les méthodes sont comprises.
+
+NIVEAU 1 — BASES
+1. Identifier a, b et c dans 3x²-2x+8.
+2. Calculer f(-2) pour f(x)=x²+3x-1.
+3. Développer (x+2)(x-7).
+4. Factoriser 4x²+20x.
+5. Résoudre (x-8)(x+1)=0.
+
+NIVEAU 2 — RACINES ET SIGNE
+6. Vérifier que 2 est une racine de x²-5x+6.
+7. Factoriser x²-5x+6.
+8. Étudier le signe de (x+3)(x-2).
+9. Résoudre (x-1)(x+4)>0.
+10. Résoudre (x-2)(x+5)≤0.
+
+NIVEAU 3 — PARABOLE
+11. Donner le sommet de 3(x-4)²+2.
+12. Donner les variations de -2(x+3)²+5.
+13. Mettre x²-10x+16 sous forme canonique.
+14. Donner l'axe de symétrie de 2x²-8x+1.
+15. Calculer le minimum de x²+6x+11.
+
+NIVEAU 4 — APPROFONDISSEMENT
+16. Calculer le discriminant de 2x²-3x-2.
+17. Résoudre x²+2x-8=0.
+18. Déterminer la somme et le produit des racines de 3x²-12x+9.
+19. Factoriser 4x²-12x+9.
+20. Étudier le signe de -2(x-1)(x+3).
+
+======================================================================
+25. GLOSSAIRE
+======================================================================
+
+Abscisse : première coordonnée d'un point, généralement notée x.
+Ordonnée : deuxième coordonnée d'un point, généralement notée y.
+Axe des abscisses : axe horizontal.
+Axe des ordonnées : axe vertical.
+Coefficient : nombre qui multiplie une expression.
+Discriminant : nombre Δ=b²-4ac utilisé dans la méthode générale.
+Équation : égalité contenant une ou plusieurs inconnues.
+Inéquation : comparaison avec <, >, ≤ ou ≥.
+Factoriser : écrire une somme sous forme d'un produit.
+Développer : transformer un produit en somme.
+Fonction : association entre une variable et une valeur.
+Image : résultat obtenu pour une valeur de x.
+Antécédent : valeur de x correspondant à une image donnée.
+Maximum : plus grande valeur atteinte.
+Minimum : plus petite valeur atteinte.
+Parabole : courbe d'une fonction du second degré.
+Racine : valeur qui annule le polynôme.
+Sommet : point d'extremum de la parabole.
+Symétrie : transformation qui conserve une figure par rapport à un axe.
+Tableau de signes : tableau indiquant les signes d'une expression.
+Tableau de variations : tableau indiquant les évolutions d'une fonction.
+Trinôme : polynôme comportant trois termes, souvent utilisé pour désigner
+un polynôme du second degré ax²+bx+c.
+
+======================================================================
+26. PROGRAMME OFFICIEL : ATTENDUS ET LIMITES
+======================================================================
+
+RÉFÉRENCE PRINCIPALE POUR LA PREMIÈRE TECHNOLOGIQUE EN 2026-2027
+
+Le Bulletin officiel n°14 du 2 avril 2026 publie le nouveau programme de
+mathématiques de première de la voie technologique. L'arrêté du 26 février
+2026 prévoit son application à la rentrée scolaire 2026-2027.
+
+Dans la partie « Fonctions de la variable réelle », le programme comprend
+les fonctions polynômes de degré 2.
+
+CONTENUS OFFICIELS À TRAVAILLER
+- Éléments caractéristiques de la courbe : allure.
+- Axe de symétrie.
+- Coordonnées du sommet.
+- Lien entre symétrie et tableau de variation.
+- Racines et signe d'un polynôme de degré 2 donné sous forme factorisée.
+- Étude des formes x ↦ ax², x ↦ ax²+c et x ↦ a(x-x1)(x-x2).
+- Étude d'éléments caractéristiques de ax²+bx+c.
+
+CAPACITÉS ATTENDUES
+L'élève doit notamment savoir :
+- modéliser la dépendance entre deux grandeurs à l'aide d'une fonction ;
+- résoudre graphiquement une équation f(x)=k ;
+- résoudre graphiquement une inéquation f(x)<k ou f(x)>k ;
+- interpréter un taux de variation comme pente d'une sécante ;
+- associer une parabole à une expression algébrique de degré 2 dans les
+  formes précisées par le programme ;
+- déterminer des éléments caractéristiques d'une fonction ax²+bx+c ;
+- vérifier qu'une valeur conjecturée est racine ;
+- factoriser dans des cas simples lorsqu'au moins une racine est connue ;
+- utiliser la forme factorisée pour trouver les racines et étudier le signe.
+
+LIMITES EXPLICITES DU PROGRAMME
+Le texte officiel précise :
+- le calcul des racines à l'aide du discriminant ne figure pas au programme ;
+- aucune formule n'est attendue pour déterminer les éléments caractéristiques
+  de ax²+bx+c ;
+- la recherche systématique des racines ne figure pas au programme ;
+- on privilégie les racines évidentes et les interprétations graphiques ;
+- si nécessaire, la résolution peut se faire à l'aide d'un solveur.
+
+CE QUI EST DONC PRIORITAIRE POUR UN ÉLÈVE DE PREMIÈRE STI2D
+1. Reconnaître une fonction du second degré.
+2. Identifier son expression et ses coefficients.
+3. Reconnaître une parabole.
+4. Comprendre l'effet du signe de a.
+5. Lire et déterminer le sommet et l'axe de symétrie.
+6. Construire et lire un tableau de variations.
+7. Calculer une image.
+8. Vérifier une racine en calculant f(r).
+9. Factoriser des expressions simples.
+10. Trouver les racines d'une forme factorisée.
+11. Construire et exploiter un tableau de signes.
+12. Interpréter une situation réelle et les unités.
+13. Utiliser un graphique ou un outil numérique avec esprit critique.
+
+COMPÉTENCES MATHÉMATIQUES TRANSVERSALES
+Le programme rappelle six compétences :
+- Chercher : expérimenter et émettre des conjectures.
+- Modéliser : traduire une situation réelle en mathématiques.
+- Représenter : passer d'une formule à un graphique et inversement.
+- Raisonner : justifier et démontrer.
+- Calculer : effectuer correctement les calculs.
+- Communiquer : expliquer clairement une démarche et une conclusion.
+
+PLACE DE LA CALCULATRICE ET DU NUMÉRIQUE
+Le programme autorise et encourage un usage raisonné des outils numériques.
+Un outil graphique ou un solveur peut aider à explorer une fonction ou à
+obtenir une solution approchée. Cependant, l'élève doit savoir expliquer
+ce que représente le résultat et vérifier sa cohérence.
+
+DISTINCTION ENTRE PREMIÈRE TECHNOLOGIQUE ET PREMIÈRE GÉNÉRALE
+Le programme de spécialité mathématiques de première générale comporte un
+traitement plus approfondi du second degré, notamment la forme canonique,
+le discriminant, la factorisation éventuelle et la résolution générale d'une
+équation du second degré.
+Il ne faut donc pas transposer automatiquement toutes les exigences de la
+spécialité générale à la première STI2D.
+
+Le présent document inclut volontairement ces méthodes générales en
+approfondissement, mais les signale comme telles.
+
+======================================================================
+27. SOURCES OFFICIELLES ET RESSOURCES
+======================================================================
+
+1. Bulletin officiel — Programme de mathématiques de première technologique
+   Ministère de l'Éducation nationale
+   https://www.education.gouv.fr/bo/2026/Hebdo14/MENE2602918A
+
+2. Annexe PDF du programme de première technologique
+   Document officiel détaillant les contenus et capacités attendues.
+   Accessible depuis la page du Bulletin officiel ci-dessus.
+
+3. Éduscol — Programmes et ressources en série STI2D
+   https://eduscol.education.fr/5856/programmes-et-ressources-en-serie-sti2d
+
+4. Ministère de l'Éducation nationale — Programmes du lycée général et
+   technologique
+   https://www.education.gouv.fr/reussir-au-lycee/les-programmes-du-lycee-general-et-technologique-9812
+
+5. Programme de spécialité mathématiques de première générale
+   https://www.education.gouv.fr/bo/2026/Hebdo14/MENE2602917A
+
+6. Édubase — Ressource pédagogique sur l'étude du signe d'un polynôme du
+   second degré et l'usage raisonné de la calculatrice
+   https://edubase.eduscol.education.fr/fiche/24755
+
+Ces liens renvoient à des ressources institutionnelles ou pédagogiques.
+Les consignes du professeur et le programme officiel applicable à la classe
+de l'élève restent les références prioritaires.
+
+======================================================================
+CONCLUSION GÉNÉRALE
+======================================================================
+
+Un polynôme du second degré est une expression de la forme :
+  f(x)=ax²+bx+c, avec a différent de 0.
+
+Sa courbe est une parabole.
+Le signe de a indique son orientation.
+Le sommet donne le minimum ou le maximum.
+L'axe de symétrie partage la parabole en deux parties symétriques.
+Les racines sont les valeurs qui annulent la fonction.
+La forme factorisée permet de lire les racines et d'étudier le signe.
+La forme canonique permet de lire le sommet et les variations.
+La forme développée permet d'identifier les coefficients.
+
+Pour réussir un exercice, il faut d'abord identifier ce que la question demande :
+- calculer une image ;
+- trouver une racine ;
+- factoriser ;
+- étudier un signe ;
+- déterminer un sommet ;
+- établir les variations ;
+- résoudre une équation ou une inéquation ;
+- interpréter un graphique ou une situation concrète.
+
+Il faut ensuite choisir la forme et la méthode les plus adaptées, détailler les
+calculs, vérifier le résultat et rédiger une conclusion claire.
+
+FIN DE L'ARCHIVE
