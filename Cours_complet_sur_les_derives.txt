@@ -1,0 +1,988 @@
+LES DÉRIVÉES EN MATHÉMATIQUES Cours complet, méthodes de calcul et
+préparation à une évaluation Niveau : lycée (principalement Première /
+spécialité mathématiques)
+===============================================================
+
+OBJECTIF DU DOCUMENT
+
+Ce cours rassemble les notions et les méthodes essentielles sur les
+dérivées : - comprendre ce qu’est une dérivée et à quoi elle sert ; -
+calculer f’(x) avec les formules usuelles ; - calculer f’(a),
+c’est-à-dire la dérivée en un nombre précis ; - déterminer une équation
+de tangente ; - étudier le sens de variation d’une fonction ; -
+construire et rédiger un tableau de signes et un tableau de variations
+; - repérer les extrema ; - utiliser la dérivée seconde lorsque le cours
+l’exige ; - résoudre les questions classiques et éviter les erreurs
+fréquentes.
+
+Le programme exact dépend de la classe et du professeur. Les parties sur
+la convexité et la dérivée seconde peuvent être approfondies ou
+facultatives selon le niveau.
+
+SOMMAIRE
+
+1.  Comprendre l’idée de dérivée
+
+2.  Taux de variation et nombre dérivé
+
+3.  Interprétation graphique : pente et tangente
+
+4.  Formule de la tangente
+
+5.  Les règles de dérivation à connaître
+
+6.  Dériver les fonctions usuelles
+
+7.  Dériver une expression composée
+
+8.  Méthode complète pour calculer f’(x)
+
+9.  Calculer f’(a)
+
+10. Étudier le signe de f’(x)
+
+11. Construire un tableau de variations
+
+12. Maximum, minimum et extremum
+
+13. Résoudre les questions classiques d’évaluation
+
+14. Dérivée seconde et convexité
+
+15. Applications concrètes
+
+16. Difficultés et pièges fréquents
+
+17. Méthodes de rédaction
+
+18. Fiche de formules
+
+19. Exercices corrigés
+
+20. Liste de vérification avant de rendre une copie
+
+21. COMPRENDRE L’IDÉE DE DÉRIVÉE
+
+    Une fonction f associe à un nombre x un autre nombre f(x). On peut
+    représenter cette fonction par une courbe.
+
+La dérivée décrit la manière dont la fonction évolue au voisinage d’un
+point. Elle mesure notamment la pente de la courbe en ce point.
+
+Exemple intuitif : - Si f’(a) > 0, la courbe monte au voisinage de x =
+a. - Si f’(a) < 0, la courbe descend au voisinage de x = a. - Si f’(a) =
+0, la tangente est horizontale au point d’abscisse a.
+
+Attention : f’(a) = 0 ne signifie pas automatiquement que la fonction
+possède un maximum ou un minimum. Il peut aussi s’agir d’un point où la
+courbe s’aplatit sans changer de sens.
+
+La dérivée est donc un outil qui permet de répondre à plusieurs
+questions : - La fonction augmente-t-elle ou diminue-t-elle ? - Où
+atteint-elle un maximum ou un minimum ? - Quelle est la pente de la
+courbe en un point ? - Quelle est l’équation de la tangente ? - À quel
+rythme une grandeur évolue-t-elle ?
+
+2. TAUX DE VARIATION ET NOMBRE DÉRIVÉ
+
+2.1. Taux de variation entre deux nombres
+
+Pour deux nombres a et b distincts, le taux de variation de f entre a et
+b est :
+
+       [f(b) - f(a)] / (b - a)
+
+On peut aussi prendre b = a + h, avec h différent de 0 :
+
+       [f(a + h) - f(a)] / h
+
+Ce quotient représente la pente de la droite qui relie les deux points
+de la courbe : A(a ; f(a)) et B(a+h ; f(a+h)).
+
+Cette droite est appelée sécante à la courbe.
+
+2.2. Passage à la dérivée
+
+Lorsque h se rapproche de 0, le point B se rapproche du point A. Si le
+quotient possède une limite finie, cette limite est le nombre dérivé de
+f en a :
+
+       f'(a) = lim [f(a+h) - f(a)] / h
+               h -> 0
+
+Cette formule est la définition du nombre dérivé.
+
+Il faut distinguer : - f : la fonction ; - f(a) : l’image de a ; - f’ :
+la fonction dérivée ; - f’(a) : le nombre dérivé en a.
+
+Exemple avec f(x) = x² :
+
+f(a+h) = (a+h)² = a² + 2ah + h²
+
+[f(a+h)-f(a)]/h = [a² + 2ah + h² - a²]/h = [2ah + h²]/h = 2a + h
+
+Quand h tend vers 0, 2a+h tend vers 2a.
+
+Donc :
+
+       f'(a) = 2a
+
+Et la fonction dérivée est :
+
+       f'(x) = 2x
+
+3. INTERPRÉTATION GRAPHIQUE : PENTE ET TANGENTE
+
+La dérivée f’(a) est le coefficient directeur de la tangente à la courbe
+au point d’abscisse a.
+
+Pour une droite, le coefficient directeur vaut :
+
+       m = (variation verticale) / (variation horizontale)
+         = (y2-y1)/(x2-x1)
+
+Pour la courbe d’une fonction dérivable, f’(a) donne la pente de la
+tangente au point A(a ; f(a)).
+
+Interprétation : - pente positive : tangente montante ; - pente négative
+: tangente descendante ; - pente nulle : tangente horizontale.
+
+Exemple : Si f’(2) = 5, la tangente au point d’abscisse 2 a pour
+coefficient directeur 5. Cela signifie qu’au voisinage de x = 2, une
+augmentation de 1 unité de x correspond approximativement à une
+augmentation de 5 unités de f(x).
+
+Si f’(2) = -3, la pente est négative : la courbe descend localement.
+
+4. FORMULE DE LA TANGENTE
+
+C’est une formule très importante à connaître.
+
+L’équation de la tangente à la courbe de f au point d’abscisse a est :
+
+       y = f'(a)(x-a) + f(a)
+
+On peut aussi écrire :
+
+       y = f'(a) x - a f'(a) + f(a)
+
+La formule parfois recopiée sous la forme « f’(a)+(x-a)+f(a) » est
+incorrecte : il faut multiplier f’(a) par (x-a). La bonne formule est
+bien f’(a)(x-a)+f(a).
+
+Signification de chaque élément : - a : l’abscisse du point où l’on veut
+la tangente ; - f(a) : l’ordonnée du point de contact ; - f’(a) : la
+pente de la tangente ; - x : la variable de l’équation de la droite ; -
+y : l’ordonnée sur la tangente.
+
+La tangente passe obligatoirement par le point A(a ; f(a)) et possède le
+coefficient directeur f’(a).
+
+4.1. Méthode en quatre étapes
+
+Pour déterminer la tangente au point d’abscisse a :
+
+Étape 1 : calculer f(a). Étape 2 : calculer f’(x). Étape 3 : calculer
+f’(a). Étape 4 : remplacer dans y = f’(a)(x-a)+f(a), puis développer si
+nécessaire.
+
+4.2. Exemple détaillé
+
+Soit f(x) = x² + 3x - 1. Déterminer la tangente au point d’abscisse a =
+2.
+
+Étape 1 : calcul de f(2)
+
+f(2) = 2² + 3×2 - 1 = 4 + 6 - 1 = 9
+
+Le point de contact est A(2 ; 9).
+
+Étape 2 : dérivée
+
+f’(x) = 2x + 3
+
+Étape 3 : calcul de f’(2)
+
+f’(2) = 2×2 + 3 = 7
+
+La tangente a donc pour pente 7.
+
+Étape 4 : équation
+
+y = f’(2)(x-2)+f(2) y = 7(x-2)+9 y = 7x-14+9 y = 7x-5
+
+Réponse : la tangente est la droite d’équation y = 7x - 5.
+
+4.3. Vérification
+
+Au point x = 2, la droite donne : y = 7×2 - 5 = 9.
+
+On retrouve bien f(2) = 9. C’est un bon contrôle.
+
+4.4. Cas particuliers
+
+Si f’(a) = 0, alors :
+
+y = 0(x-a)+f(a) y = f(a)
+
+La tangente est horizontale.
+
+Si f’(a) = 1, la pente vaut 1. Si f’(a) = -2, la pente vaut -2.
+
+5. LES RÈGLES DE DÉRIVATION À CONNAÎTRE
+
+Dans les formules suivantes, u et v sont des fonctions dérivables, et k
+est une constante.
+
+5.1. Constante
+
+Si f(x) = k, alors :
+
+       f'(x) = 0
+
+Exemple : f(x) = 8 f’(x) = 0
+
+Pourquoi ? La fonction reste toujours égale à 8 : elle ne varie pas.
+
+5.2. Fonction identité
+
+Si f(x) = x, alors :
+
+       f'(x) = 1
+
+5.3. Puissance de x
+
+Pour un exposant entier positif :
+
+       f(x) = x^n
+       f'(x) = n x^(n-1)
+
+Exemples : - (x²)’ = 2x - (x³)’ = 3x² - (x⁴)’ = 4x³ - (x⁵)’ = 5x⁴ -
+(x^10)’ = 10x^9
+
+On multiplie par l’exposant, puis on diminue l’exposant de 1.
+
+5.4. Multiplication par une constante
+
+       (k u)' = k u'
+
+Exemple : f(x) = 7x³ f’(x) = 7×3x² = 21x²
+
+5.5. Somme
+
+       (u+v)' = u' + v'
+
+Exemple : f(x) = x³ + 4x² + 2x + 9 f’(x) = 3x² + 8x + 2 + 0 f’(x) =
+3x² + 8x + 2
+
+5.6. Différence
+
+       (u-v)' = u' - v'
+
+Exemple : f(x) = 5x³ - 2x² + 6 f’(x) = 15x² - 4x
+
+5.7. Produit
+
+       (u v)' = u'v + uv'
+
+Attention : la dérivée d’un produit n’est généralement PAS u’v’.
+
+Exemple : f(x) = (x²+1)(3x-2)
+
+On pose : u = x²+1 ; u’ = 2x v = 3x-2 ; v’ = 3
+
+Alors : f’(x) = 2x(3x-2) + (x²+1)×3 = 6x² - 4x + 3x² + 3 = 9x² - 4x + 3
+
+5.8. Quotient
+
+Si v(x) n’est pas nul :
+
+       (u/v)' = (u'v - uv') / v²
+
+L’ordre est important : u’v moins uv’, le tout divisé par v².
+
+Exemple : f(x) = (x²+1)/(x+2)
+
+u = x²+1 ; u’ = 2x v = x+2 ; v’ = 1
+
+f’(x) = [2x(x+2) - (x²+1)×1]/(x+2)² = [2x²+4x-x²-1]/(x+2)² =
+(x²+4x-1)/(x+2)²
+
+Domaine : x différent de -2.
+
+5.9. Inverse
+
+Pour u non nul :
+
+       (1/u)' = -u'/u²
+
+Exemple : f(x) = 1/(x²+1) u = x²+1 ; u’ = 2x
+
+f’(x) = -2x/(x²+1)²
+
+5.10. Racine carrée
+
+Pour u strictement positif et dérivable :
+
+       (sqrt(u))' = u' / (2 sqrt(u))
+
+Exemple : f(x) = sqrt(3x+1)
+
+u = 3x+1 ; u’ = 3
+
+f’(x) = 3/[2 sqrt(3x+1)]
+
+Cette formule s’utilise là où l’expression sous la racine est
+strictement positive.
+
+6. DÉRIVER LES FONCTIONS USUELLES
+
+Tableau de référence :
+
+Fonction f(x) Dérivée f’(x)
+
+k 0 x 1 x² 2x x³ 3x² x⁴ 4x³ x^n n x^(n-1) 1/x -1/x² 1/x² -2/x³ sqrt(x)
+1/(2 sqrt(x)) a x + b a a x² + b x + c 2a x + b
+
+Pour une fonction affine f(x)=ax+b, la dérivée est le nombre constant a.
+Une fonction affine a donc une pente constante.
+
+Remarque : les formules contenant un dénominateur ne sont valables que
+lorsque le dénominateur n’est pas nul. Il faut toujours respecter le
+domaine de définition.
+
+7. DÉRIVER UNE EXPRESSION COMPOSÉE
+
+Une fonction composée est une fonction dans laquelle une expression
+remplace x dans une fonction connue.
+
+Exemple : (3x+2)². La fonction extérieure est le carré et l’expression
+intérieure est 3x+2.
+
+Règle générale, appelée règle de la chaîne :
+
+       [g(u(x))]' = u'(x) × g'(u(x))
+
+Autrement dit : on dérive la fonction extérieure en gardant l’intérieur,
+puis on multiplie par la dérivée de l’intérieur.
+
+Formules pratiques :
+
+-   (u²)’ = 2u u’
+-   (u³)’ = 3u² u’
+-   (u^n)’ = n u^(n-1) u’
+-   (1/u)’ = -u’/u²
+-   (sqrt(u))’ = u’/(2sqrt(u))
+
+Exemple 1 : f(x) = (3x+2)²
+
+u = 3x+2 ; u’ = 3
+
+f’(x) = 2(3x+2)×3 = 6(3x+2) = 18x+12
+
+Exemple 2 : f(x) = (5x-1)³
+
+f’(x) = 3(5x-1)²×5 = 15(5x-1)²
+
+Exemple 3 : f(x) = 1/(2x+7)
+
+f’(x) = -2/(2x+7)²
+
+Exemple 4 : f(x) = sqrt(4x-3)
+
+f’(x) = 4/[2sqrt(4x-3)] = 2/sqrt(4x-3)
+
+Erreur classique : oublier de multiplier par la dérivée de l’expression
+intérieure.
+
+Pour (4x+1)², la dérivée n’est pas simplement 2(4x+1). Il faut aussi
+multiplier par 4 : f’(x)=8(4x+1).
+
+8. MÉTHODE COMPLÈTE POUR CALCULER f’(x)
+
+Quand on demande « calculer la fonction dérivée », on cherche une
+expression valable en fonction de x.
+
+Méthode : 1. Repérer la forme de chaque terme. 2. Appliquer la bonne
+formule. 3. Dériver chaque terme ou utiliser produit/quotient/chaîne. 4.
+Simplifier et réduire si possible. 5. Indiquer les valeurs interdites ou
+le domaine où la formule est valable.
+
+Exemple : f(x) = 4x³ - 5x² + 7x - 12
+
+f’(x) = 4×3x² - 5×2x + 7 - 0 = 12x² - 10x + 7
+
+Autre exemple : f(x) = (x²+2x)(x-4)
+
+Méthode produit : u=x²+2x ; u’=2x+2 v=x-4 ; v’=1
+
+f’(x)=(2x+2)(x-4)+(x²+2x) = 2x²-6x-8+x²+2x = 3x²-4x-8
+
+On peut aussi développer f avant de dériver : f(x)=x³-2x²-8x
+f’(x)=3x²-4x-8
+
+Les deux méthodes donnent le même résultat.
+
+9. CALCULER f’(a)
+
+La notation f’(a) signifie : on prend l’expression de la dérivée f’(x),
+puis on remplace x par a.
+
+Exemple : f(x)=3x²-2x+5 f’(x)=6x-2
+
+Calculer f’(4) : f’(4)=6×4-2=24-2=22.
+
+Ne pas confondre : f(4)=3×16-8+5=45 f’(4)=22
+
+f(4) est une hauteur (une image). f’(4) est une pente (un nombre
+dérivé).
+
+Méthode recommandée : 1. Calculer f’(x). 2. Écrire clairement f’(a). 3.
+Remplacer x par la valeur de a. 4. Effectuer les calculs avec les
+parenthèses nécessaires.
+
+Exemple avec a négatif : f’(x)=2x+3 f’(-2)=2×(-2)+3=-4+3=-1.
+
+Attention aux signes : écrire 2(-2), pas 2-2.
+
+10. ÉTUDIER LE SIGNE DE f’(x)
+
+Le signe de la dérivée indique le sens de variation de la fonction sur
+un intervalle.
+
+Règle fondamentale : - Si f’(x) > 0 sur un intervalle, f est strictement
+croissante sur cet intervalle. - Si f’(x) < 0 sur un intervalle, f est
+strictement décroissante sur cet intervalle. - Si f’(x) = 0 partout sur
+un intervalle, f est constante sur cet intervalle.
+
+Si f’(x) est seulement nulle en quelques points, cela ne rend pas la
+fonction constante.
+
+10.1. Pourquoi ?
+
+Une dérivée positive correspond à une pente positive : la courbe monte.
+Une dérivée négative correspond à une pente négative : la courbe
+descend.
+
+10.2. Exemple simple
+
+f(x)=x²-4x+1 f’(x)=2x-4=2(x-2)
+
+Signe : - si x<2, x-2<0, donc f’(x)<0 ; - si x=2, f’(x)=0 ; - si x>2,
+x-2>0, donc f’(x)>0.
+
+Donc f décroît jusqu’à 2 puis croît après 2.
+
+10.3. Dérivée factorisée
+
+Exemple : f’(x)=(x-1)(x+3)
+
+Les zéros sont x=1 et x=-3.
+
+Étude des signes : - un produit est positif si ses deux facteurs ont le
+même signe ; - un produit est négatif si ses deux facteurs ont des
+signes contraires.
+
+Sur les intervalles : - x<-3 : les deux facteurs sont négatifs, produit
+positif ; - -3<x<1 : un facteur négatif et l’autre positif, produit
+négatif ; - x>1 : les deux facteurs sont positifs, produit positif.
+
+Donc f est croissante, puis décroissante, puis croissante.
+
+10.4. Dérivée sous forme de quotient
+
+Exemple : f’(x)=(x-2)/(x+1)
+
+Il faut étudier séparément le numérateur et le dénominateur. - zéro du
+numérateur : x=2 ; - valeur interdite : x=-1.
+
+Le signe change éventuellement à ces valeurs. On n’oublie jamais la
+valeur interdite du dénominateur.
+
+10.5. Tableau de signes : méthode
+
+1.  Factoriser f’(x) si possible.
+2.  Trouver les racines de chaque facteur.
+3.  Trouver les valeurs interdites.
+4.  Placer les valeurs dans l’ordre croissant.
+5.  Étudier le signe de chaque facteur.
+6.  Combiner les signes pour obtenir celui de f’(x).
+
+Pour un facteur x-a : - négatif si x<a ; - nul si x=a ; - positif si
+x>a.
+
+Pour un facteur -(x-a), les signes sont inversés.
+
+11. CONSTRUIRE UN TABLEAU DE VARIATIONS
+
+Le tableau de variations résume les endroits où la fonction monte ou
+descend.
+
+Méthode complète :
+
+Étape 1 : déterminer l’ensemble de définition. Étape 2 : calculer f’(x).
+Étape 3 : factoriser f’(x) si cela aide. Étape 4 : résoudre f’(x)=0.
+Étape 5 : étudier le signe de f’(x) sur chaque intervalle. Étape 6 : en
+déduire les variations de f. Étape 7 : calculer les valeurs de f aux
+points importants et aux bornes lorsque cela est demandé. Étape 8 :
+construire le tableau avec les flèches.
+
+Exemple complet :
+
+Soit f(x)=x²-4x+1 définie sur R.
+
+1.  Dérivée : f’(x)=2x-4=2(x-2).
+
+2.  Signe : f’(x)<0 si x<2 ; f’(2)=0 ; f’(x)>0 si x>2.
+
+3.  Valeur au point critique : f(2)=4-8+1=-3.
+
+4.  Conclusion : f est décroissante sur ]-infini ; 2], puis croissante
+    sur [2 ; +infini[. Elle atteint son minimum -3 en x=2.
+
+Présentation textuelle du tableau :
+
+x -infini 2 +infini f’(x) - 0 + f descend minimum monte -3
+
+Dans une copie, utiliser les flèches descendante puis montante et placer
+-3 sous x=2.
+
+11.1. Exemple avec trois intervalles
+
+Supposons que : f’(x)=(x+2)(x-3).
+
+Les racines sont -2 et 3. - Pour x<-2 : produit positif. - Pour -2<x<3 :
+produit négatif. - Pour x>3 : produit positif.
+
+Donc : f croît sur ]-infini ; -2], décroît sur [-2 ; 3], croît sur [3 ;
++infini[.
+
+Pour compléter les valeurs du tableau, il faut calculer f(-2) et f(3)
+avec la fonction de départ.
+
+11.2. Attention aux bornes
+
+Si le domaine est [0 ; 5], on ne doit pas étudier des valeurs en dehors
+de cet intervalle. Il faut examiner le signe de la dérivée seulement sur
+le domaine utile.
+
+Les crochets et parenthèses ont un sens : - [a ; b] inclut a et b ; - ]a
+; b[ exclut a et b ; - +infini et -infini ne sont jamais des nombres
+atteints.
+
+11.3. Si la dérivée n’existe pas en un point
+
+Il peut exister un point du domaine où f est définie mais non dérivable.
+Il faut alors découper l’étude en intervalles et examiner le
+comportement de chaque côté. Ne pas appliquer une formule de dérivée là
+où elle n’est pas valable.
+
+12. MAXIMUM, MINIMUM ET EXTREMUM
+
+Un extremum est un maximum ou un minimum.
+
+Maximum local : la fonction prend une valeur au moins aussi grande que
+les valeurs voisines. Minimum local : elle prend une valeur au moins
+aussi petite que les valeurs voisines.
+
+Dans un tableau de variations : - passage de + à - pour f’ : la fonction
+monte puis descend ; on a un maximum local ; - passage de - à + pour f’
+: la fonction descend puis monte ; on a un minimum local ; - si f’ ne
+change pas de signe, il n’y a pas d’extremum dû à ce point.
+
+Exemple : f’(x)=(x-1)(x+2). Le signe est positif avant -2, négatif entre
+-2 et 1, positif après 1. Donc : - maximum local en x=-2 ; - minimum
+local en x=1.
+
+Pour donner les coordonnées de l’extremum, calculer aussi f(-2) ou f(1).
+
+Attention : - f’(a)=0 est une condition fréquente pour un extremum
+intérieur, mais ce n’est pas une preuve suffisante ; - un maximum ou
+minimum sur un intervalle fermé peut se trouver à une borne, même si la
+dérivée n’y est pas nulle ; - pour trouver le maximum global sur [a ;
+b], comparer les valeurs aux points critiques et aux deux bornes.
+
+13. RÉSOUDRE LES QUESTIONS CLASSIQUES D’ÉVALUATION
+
+Question A : « Déterminer l’ensemble de définition »
+
+Repérer : - les dénominateurs qui ne doivent pas être nuls ; - les
+racines carrées dont l’intérieur doit être positif ou nul ; - les autres
+contraintes éventuelles.
+
+Exemples : 1/(x-3) : x différent de 3. sqrt(x+2) : x supérieur ou égal à
+-2. 1/sqrt(x-1) : x strictement supérieur à 1.
+
+Question B : « Calculer la dérivée f’ »
+
+Appliquer les formules de dérivation. Simplifier le résultat.
+
+Question C : « Calculer f’(2) »
+
+Calculer d’abord f’(x), puis remplacer x par 2.
+
+Question D : « Déterminer l’équation de la tangente au point d’abscisse
+2 »
+
+Calculer f(2), f’(x), puis f’(2). Appliquer : y=f’(2)(x-2)+f(2).
+
+Question E : « Étudier les variations de f »
+
+Calculer f’, résoudre f’=0, faire le tableau de signes, puis déduire les
+variations.
+
+Question F : « Déterminer les extremums »
+
+Repérer les changements de signe de f’ et calculer les images des points
+correspondants.
+
+Question G : « Déterminer les intervalles sur lesquels f est croissante
+»
+
+Chercher les intervalles où f’(x)>0.
+
+Question H : « Déterminer les intervalles sur lesquels f est
+décroissante »
+
+Chercher les intervalles où f’(x)<0.
+
+Question I : « Montrer que f est croissante sur un intervalle »
+
+Il suffit généralement de démontrer que f’(x) est positive ou nulle sur
+cet intervalle, puis d’utiliser le théorème de variation.
+
+Question J : « Résoudre f’(x)=0 »
+
+Factoriser si possible, puis utiliser la règle du produit nul :
+A(x)B(x)=0 implique A(x)=0 ou B(x)=0.
+
+Question K : « Déterminer les points où la tangente est horizontale »
+
+Résoudre f’(x)=0, puis calculer les points correspondants (a ; f(a)).
+Attention : une tangente horizontale n’implique pas nécessairement un
+extremum.
+
+Question L : « Donner le coefficient directeur de la tangente en a »
+
+La réponse est directement f’(a).
+
+Question M : « La droite y=mx+p est-elle tangente à la courbe au point
+d’abscisse a ? »
+
+Vérifier deux choses : 1. Elle passe par le point : ma+p=f(a). 2. Son
+coefficient directeur est le bon : m=f’(a).
+
+Question N : « Déterminer a pour que la tangente ait une pente donnée m
+»
+
+Résoudre : f’(a)=m.
+
+Question O : « Déterminer a pour que la tangente soit parallèle à une
+droite de pente m »
+
+Même méthode : résoudre f’(a)=m.
+
+Question P : « Déterminer a pour que la tangente soit horizontale »
+
+Résoudre f’(a)=0.
+
+14. DÉRIVÉE SECONDE ET CONVEXITÉ
+
+La dérivée seconde est la dérivée de la fonction dérivée. Elle se note
+f’’(x).
+
+Exemple : f(x)=x³-3x²+2x f’(x)=3x²-6x+2 f’’(x)=6x-6
+
+14.1. À quoi sert f’’ ?
+
+La dérivée première renseigne sur les variations. La dérivée seconde
+renseigne sur la manière dont la pente évolue et permet d’étudier la
+convexité.
+
+-   Si f’’(x)>0 sur un intervalle, f est convexe sur cet intervalle.
+-   Si f’’(x)<0 sur un intervalle, f est concave sur cet intervalle.
+
+Image mentale : - convexe : courbe en forme de bol, comme un sourire ; -
+concave : courbe en forme de dôme, comme un chapeau.
+
+14.2. Point d’inflexion
+
+Un point d’inflexion est un point où la courbe change de convexité. On
+recherche souvent les valeurs où f’‘(x)=0, puis on vérifie que f’’
+change effectivement de signe.
+
+Le simple fait que f’’(a)=0 ne suffit pas à prouver qu’il y a un point
+d’inflexion.
+
+Exemple : f(x)=x³ f’(x)=3x² f’‘(x)=6x. f’’ est négative si x<0 et
+positive si x>0. La courbe change de convexité en 0 : le point (0 ; 0)
+est un point d’inflexion.
+
+14.3. Critère de la dérivée seconde pour un extremum
+
+Si f’(a)=0 : - si f’‘(a)>0, f possède un minimum local en a ; - si
+f’‘(a)<0, f possède un maximum local en a ; - si f’’(a)=0, ce critère ne
+permet pas de conclure.
+
+Ce critère est un outil supplémentaire. L’étude du signe de f’ reste une
+méthode très fiable.
+
+15. APPLICATIONS CONCRÈTES
+
+15.1. Vitesse instantanée
+
+Si s(t) représente une position en fonction du temps, alors s’(t)
+représente la vitesse instantanée (dans les unités adaptées).
+
+Si v(t) représente la vitesse, alors v’(t) représente l’accélération.
+
+Exemple : s(t)=t²+3t v(t)=s’(t)=2t+3.
+
+À t=4 : v(4)=11 unités de distance par unité de temps.
+
+15.2. Optimisation
+
+Une entreprise peut chercher à maximiser un bénéfice ou à minimiser un
+coût. On modélise la grandeur par une fonction, on calcule sa dérivée,
+puis on recherche les points critiques et on compare les valeurs utiles.
+
+Méthode : 1. définir la fonction objectif ; 2. déterminer son domaine ;
+3. calculer sa dérivée ; 4. résoudre f’(x)=0 ; 5. étudier les variations
+; 6. vérifier les bornes du domaine ; 7. conclure avec les unités.
+
+15.3. Coût marginal et variation
+
+Une dérivée peut approximer la variation d’une grandeur lorsque la
+variable change très légèrement. Pour une petite variation h : f(a+h) ≈
+f(a)+f’(a)h.
+
+Cette approximation est appelée approximation affine locale.
+
+15.4. Unités
+
+Si f mesure des mètres et x des secondes, f’(x) se mesure en mètres par
+seconde. La dérivée possède donc des unités : unité de f divisée par
+unité de x.
+
+16. DIFFICULTÉS ET PIÈGES FRÉQUENTS
+
+Erreur 1 : confondre f et f’. f(x) donne une valeur de la fonction.
+f’(x) donne une pente.
+
+Erreur 2 : confondre f’(x) et f’(a). f’(x) est une expression. f’(a) est
+un nombre obtenu en remplaçant x par a.
+
+Erreur 3 : dériver une constante comme si elle était x. La dérivée de 12
+est 0, pas 12.
+
+Erreur 4 : oublier de diminuer l’exposant. (x^5)’ = 5x^4, pas 5x^5.
+
+Erreur 5 : oublier le coefficient. (7x²)’ = 14x, pas 2x.
+
+Erreur 6 : oublier la dérivée intérieure. (3x+1)² donne 6(3x+1), pas
+2(3x+1).
+
+Erreur 7 : mal appliquer la formule du produit. (uv)’ = u’v+uv’, pas
+u’v’.
+
+Erreur 8 : inverser les termes du quotient. (u/v)‘=(u’v-uv’)/v².
+
+Erreur 9 : oublier le carré du dénominateur. La formule du quotient
+contient v².
+
+Erreur 10 : oublier les valeurs interdites. Une expression avec un
+dénominateur nul n’est pas définie.
+
+Erreur 11 : croire que f’(a)=0 signifie toujours maximum ou minimum. Il
+faut vérifier le changement de signe.
+
+Erreur 12 : inverser croissance et décroissance. f’>0 : croissante. f’<0
+: décroissante.
+
+Erreur 13 : oublier de calculer f(a) pour la tangente. La formule de
+tangente nécessite f(a) ET f’(a).
+
+Erreur 14 : écrire la mauvaise formule de tangente. La bonne formule est
+y=f’(a)(x-a)+f(a).
+
+Erreur 15 : confondre abscisse et ordonnée. Le point de contact est (a ;
+f(a)), dans cet ordre.
+
+Erreur 16 : oublier les parenthèses avec un nombre négatif. Par exemple
+2×(-3), et non 2×-3 écrit de façon ambiguë.
+
+Erreur 17 : donner les variations sans justification. Il faut montrer le
+signe de f’ ou expliquer clairement pourquoi il est positif ou négatif.
+
+Erreur 18 : oublier les bornes pour un extremum global. Sur un
+intervalle fermé, comparer les bornes et les points critiques.
+
+Erreur 19 : affirmer qu’il existe un point d’inflexion seulement parce
+que f’’=0. Il faut un changement de convexité.
+
+Erreur 20 : simplifier trop tôt et perdre une condition. Conserver les
+valeurs interdites du domaine même après simplification éventuelle.
+
+17. MÉTHODES DE RÉDACTION
+
+Pour calculer une dérivée : « La fonction est une somme de termes. En
+appliquant les règles de dérivation, on obtient : f’(x)=… »
+
+Pour étudier les variations : « On calcule : f’(x)=… On résout f’(x)=0,
+ce qui donne … Le signe de f’ est … sur les intervalles … D’après le
+lien entre le signe de la dérivée et les variations, f est croissante
+sur … et décroissante sur … »
+
+Pour une tangente : « On a f’(x)=… Donc f’(a)=… De plus, f(a)=…
+L’équation de la tangente en a est : y=f’(a)(x-a)+f(a) Ainsi, y=… »
+
+Pour un extremum : « La dérivée passe de … à … en x=a. La fonction passe
+donc de … à … ; elle admet un maximum/minimum en a, de valeur f(a)=… »
+
+Toujours terminer par une phrase de conclusion qui répond exactement à
+la question.
+
+18. FICHE DE FORMULES À MÉMORISER
+
+DÉFINITION : f’(a)=lim(h->0) [f(a+h)-f(a)]/h
+
+TANGENTE : y=f’(a)(x-a)+f(a)
+
+CONSTANTE : (k)’=0
+
+IDENTITÉ : (x)’=1
+
+PUISSANCE : (x^n)’=n x^(n-1)
+
+SOMME : (u+v)‘=u’+v’
+
+DIFFÉRENCE : (u-v)‘=u’-v’
+
+CONSTANTE MULTIPLIÉE : (ku)‘=ku’
+
+PRODUIT : (uv)‘=u’v+uv’
+
+QUOTIENT : (u/v)‘=(u’v-uv’)/v²
+
+INVERSE : (1/u)‘=-u’/u²
+
+RACINE : (sqrt(u))‘=u’/(2sqrt(u))
+
+PUISSANCE COMPOSÉE : (u^n)‘=n u^(n-1)u’
+
+VARIATIONS : f’>0 : f croissante f’<0 : f décroissante f’=0 partout sur
+un intervalle : f constante
+
+EXTREMUM : + puis - : maximum local - puis + : minimum local
+
+DÉRIVÉE SECONDE : f’‘=(f’)’
+
+19. EXERCICES CORRIGÉS
+
+Exercice 1 : dérivée d’un polynôme
+
+f(x)=5x^4-3x²+8x-6
+
+Correction : f’(x)=20x³-6x+8.
+
+Exercice 2 : calcul d’un nombre dérivé
+
+f(x)=x³-2x+4. Calculer f’(-1).
+
+Correction : f’(x)=3x²-2. f’(-1)=3×(-1)²-2=3-2=1.
+
+Exercice 3 : tangente
+
+f(x)=x²+2x. Déterminer la tangente en a=1.
+
+Correction : f’(x)=2x+2. f’(1)=4. f(1)=3. y=4(x-1)+3 y=4x-1.
+
+Exercice 4 : variations
+
+f(x)=x²+6x+4 sur R.
+
+Correction : f’(x)=2x+6=2(x+3). f’<0 si x<-3 ; f’(-3)=0 ; f’>0 si x>-3.
+f(-3)=9-18+4=-5. La fonction décroît jusqu’à -3, puis croît. Minimum :
+-5 atteint en x=-3.
+
+Exercice 5 : produit
+
+f(x)=(x²+1)(x+2).
+
+Correction : u=x²+1 ; u’=2x. v=x+2 ; v’=1. f’=2x(x+2)+(x²+1) =3x²+4x+1.
+
+Exercice 6 : quotient
+
+f(x)=(2x+1)/(x-3).
+
+Correction : u=2x+1 ; u’=2. v=x-3 ; v’=1. f’=[2(x-3)-(2x+1)]/(x-3)²
+=(2x-6-2x-1)/(x-3)² =-7/(x-3)². Domaine : x différent de 3. La dérivée
+est négative partout sur son domaine : la fonction est décroissante sur
+chacun des intervalles de son domaine, ]-infini ; 3[ et ]3 ; +infini[.
+
+Exercice 7 : fonction composée
+
+f(x)=(4x-5)².
+
+Correction : f’(x)=2(4x-5)×4=8(4x-5)=32x-40.
+
+Exercice 8 : chercher les tangentes horizontales
+
+f(x)=x³-3x.
+
+Correction : f’(x)=3x²-3=3(x-1)(x+1). f’(x)=0 pour x=-1 ou x=1. Les
+tangentes sont horizontales à ces deux abscisses. f(-1)=2 et f(1)=-2.
+Les points sont (-1 ; 2) et (1 ; -2).
+
+Exercice 9 : dérivée seconde
+
+f(x)=2x³-3x²+4x.
+
+Correction : f’(x)=6x²-6x+4. f’’(x)=12x-6.
+
+Exercice 10 : vérifier une tangente proposée
+
+f(x)=x². On propose la droite y=4x-4 au point d’abscisse 2.
+
+Correction : f(2)=4. f’(x)=2x donc f’(2)=4. La droite proposée donne,
+pour x=2 : y=4. Elle passe par le point (2 ; 4) et sa pente est 4. C’est
+bien la tangente.
+
+Exercice 11 : extremum global sur un intervalle
+
+f(x)=x²-2x+3 sur [0 ; 3].
+
+Correction : f’(x)=2x-2. f’(x)=0 pour x=1. La fonction décroît sur [0 ;
+1], puis croît sur [1 ; 3]. Valeurs : f(0)=3 ; f(1)=2 ; f(3)=6. Minimum
+global : 2 en x=1. Maximum global : 6 en x=3.
+
+20. LISTE DE VÉRIFICATION AVANT DE RENDRE UNE COPIE
+
+[ ] Ai-je bien identifié la fonction et son domaine ? [ ] Ai-je utilisé
+la bonne formule de dérivation ? [ ] Ai-je pensé à la dérivée intérieure
+pour une fonction composée ? [ ] Ai-je correctement appliqué la formule
+du produit ou du quotient ? [ ] Ai-je simplifié sans oublier les valeurs
+interdites ? [ ] Ai-je calculé f’(x) avant de calculer f’(a) ? [ ] Ai-je
+remplacé x par a avec des parenthèses ? [ ] Pour une tangente, ai-je
+calculé f(a) et f’(a) ? [ ] Ai-je écrit y=f’(a)(x-a)+f(a) ? [ ] Pour les
+variations, ai-je résolu f’(x)=0 ? [ ] Ai-je étudié le signe de f’ sur
+chaque intervalle ? [ ] Ai-je respecté l’ordre croissant des valeurs
+dans le tableau ? [ ] Ai-je bien associé f’>0 à une croissance et f’<0 à
+une décroissance ? [ ] Ai-je calculé les images des points importants ?
+[ ] Ai-je vérifié les bornes pour un maximum ou minimum global ? [ ]
+Ai-je rédigé une conclusion qui répond à la question ?
+
+CONSEIL FINAL DE RÉVISION
+
+Pour être prêt à une évaluation, il faut savoir faire sans aide, dans
+cet ordre : 1. Dériver un polynôme. 2. Calculer f’(a). 3. Dériver un
+produit et un quotient. 4. Dériver une expression composée. 5. Résoudre
+f’(x)=0 et étudier son signe. 6. Construire un tableau de variations. 7.
+Déterminer les extrema. 8. Calculer une équation de tangente.
+
+La compétence la plus importante est de savoir enchaîner les étapes :
+fonction -> dérivée -> zéros de la dérivée -> signe -> variations ->
+extrema. Pour une tangente, retenir une autre chaîne : f(a) -> f’(x) ->
+f’(a) -> y=f’(a)(x-a)+f(a).
+
+Fin du cours.
